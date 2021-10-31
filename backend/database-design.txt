@@ -1,0 +1,42 @@
+SQL Database Design
+
+Features:
+ - Save video title
+ - Video searching
+ - Video view counter
+ - Video rating system
+ - Comments section
+
+
+videos
+
+column name     type        other
+----------------------------------------
+id              serial      primary key
+title           text
+description     text
+views           bigint
+
+create table videos (id serial not null primary key, title text not null, description text not null, views bigint not null);
+
+ratings
+
+column name     type        other
+----------------------------------------
+id              serial      primary key
+video_id        int         fk(videos.id)
+is_like         boolean
+ip_address      text
+
+create table ratings (id serial not null primary key, video_id int not null references videos(id), is_like boolean not null, ip_address text not null);
+
+
+comments
+
+column name     type        other
+----------------------------------------
+id              serial      primary key
+video_id        int         fk(videos.id)
+content         text
+
+create table comments (id serial not null primary key, video_id int not null references videos(id), content text not null);

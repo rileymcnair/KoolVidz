@@ -19,6 +19,7 @@ views           bigint
 
 create table videos (id serial not null primary key, title text not null, description text not null, views bigint not null);
 
+
 ratings
 
 column name     type        other

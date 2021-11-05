@@ -10,12 +10,10 @@ app.get('/video', (req, res) => {
   res.sendFile('database-design.txt', { root: __dirname })
 })
 
-app.get('/test', (req, res) => {
-  console.log('Test triggered')
+app.get('/onboard', async (req, res) => {
   const db = new DB()
-  db.connect()
-  db.get()
-  db.close()
+  await db.create()
+  res.sendStatus(200)
 })
 
 app.listen(4000, () => {

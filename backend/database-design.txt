@@ -1,11 +1,31 @@
 SQL Database Design
 
+
 Features:
  - Save video title
  - Video searching
  - Video view counter
  - Video rating system
  - Comments section
+
+ 
+Usecases:
+
+Video:
+ - Create video
+ - Get video
+ - Search for video
+ - Increment views
+
+Ratings:
+ - Create rating
+ - Get video ratings
+ - Has rating
+ - Delete rating
+
+Comments:
+ - Create comment
+ - Get video comments
 
 
 videos

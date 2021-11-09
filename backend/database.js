@@ -52,14 +52,20 @@ class DB {
   async query (text, values) {
     this.connect()
 
+    const result = await this.query_no_connect(text, values)
+
+    this.close()
+
+    return result
+  }
+
+  async query_no_connect (text, values) {
     let result = null
     try {
       result = await this.client.query(text, values)
     } catch (err) {
       console.log(err.stack)
     }
-
-    this.close()
 
     return result
   }

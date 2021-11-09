@@ -17,8 +17,19 @@ class DAL {
     return result.rows[0]
   }
 
-  static async search_video (search_query) {
+  static async search_video (db, search_words, is_title) {
+    let query = 'SELECT * FROM videos WHERE 1 = 1'
 
+    for (let i = 1; i <= search_words.length; i++) {
+      const column = is_title ? 'title' : 'description'
+      query += ' AND ' + column + ' like $' + i
+    }
+
+    search_words = search_words.map(str => '%' + str + '%')
+
+    const result = await db.query_no_connect(query, search_words)
+
+    return result.rows
   }
 
   static async increment_video_views (video_id) {

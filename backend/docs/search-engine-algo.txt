@@ -1,0 +1,22 @@
+Search Engine Algorithm:
+
+1. Exact match title
+    - If video title contains the exact search string
+2. Exact match description
+    - If description contains the exact search string
+3. Word combinations title
+    - Split search string by whitespace into words
+    - Limit the number of words to avoid excessive complexity
+    - Generate all combinations of words
+    - Search for each combination
+    - Example: search_str == "funny cat videos"
+        - contains "funny" and contains "cat" and contains "videos"
+        - contains "cat" and contains "videos"
+        - contains "funny" and contains "videos"
+        - contains "funny" and contains "cat"
+        - contains "funny"
+        - contains "cat"
+        - contains "videos"
+4. Word combinations description
+    - Do the same as #3 but search video description instead
+5. Remove duplicates

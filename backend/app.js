@@ -4,6 +4,7 @@ const path = require('path')
 
 const DB = require('./database')
 const DAL = require('./data_access_layer')
+const SE = require('./search_engine')
 
 const app = express()
 
@@ -12,7 +13,7 @@ app.get('/video', (req, res) => {
 })
 
 app.get('/test', async (req, res) => {
-  const value = await DAL.get_video_comments(10)
+  const value = await SE.search('1 2 3 4 5 6 7 8 9 10 11', 1000)
   console.log(value)
   res.sendStatus(200)
 })

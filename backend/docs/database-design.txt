@@ -36,6 +36,7 @@ id              serial      primary key
 title           text
 description     text
 views           bigint
+filename        text
 
 create table videos (id serial not null primary key, title text not null, description text not null, views bigint not null);
 

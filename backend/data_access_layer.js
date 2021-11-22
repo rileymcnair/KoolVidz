@@ -1,9 +1,9 @@
 const DB = require('./database')
 
 class DAL {
-  static async create_video (title, description) {
-    const query = 'INSERT INTO videos (title, description) values ($1, $2) RETURNING id'
-    const values = [title, description]
+  static async create_video (title, description, filename) {
+    const query = 'INSERT INTO videos (title, description, filename) values ($1, $2, $3) RETURNING id'
+    const values = [title, description, filename]
     const result = await new DB().query(query, values)
 
     return result.rows[0].id

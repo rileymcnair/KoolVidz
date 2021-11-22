@@ -1,7 +1,6 @@
 const express = require('express')
-const fs = require('fs')
-const path = require('path')
 const requestIp = require('request-ip')
+const multer  = require('multer')
 
 const DB = require('./database')
 const DAL = require('./data_access_layer')
@@ -9,21 +8,24 @@ const SE = require('./search_engine')
 
 const app = express()
 const router = express.Router()
+const upload = multer({ dest: './videos' })
 
 function is_valid_video_id (video_id) {
   return /^\d+$/.test(video_id)
 }
 
-router.post('/video/create', async (req, res) => {
+router.post('/video/create', upload.single('video'), async (req, res) => {
   const { title } = req.headers
   const { description } = req.headers
 
-  if (!title || !description) {
+  if (!req.file || !title || !description) {
     res.sendStatus(400)
     return
   }
 
-  const id = await DAL.create_video(title, description)
+  const {filename} = req.file
+
+  const id = await DAL.create_video(title, description, filename)
   res.status(200).json(id)
 })
 
@@ -147,16 +149,11 @@ router.get('/comment/get', async (req, res) => {
   res.status(200).json(comments)
 })
 
-app.get('/video', (req, res) => {
+router.get('/videos/', (req, res) => {
   res.sendFile('database-design.txt', { root: __dirname })
 })
 
-app.get('/test', async (req, res) => {
-  const value = await SE.search('1 2 3 4 5 6 7 8 9 10 11', 1000)
-  res.sendStatus(200)
-})
-
-app.get('/onboard', async (req, res) => {
+router.get('/onboard', async (req, res) => {
   const db = new DB()
   try {
     await db.create()
@@ -169,6 +166,8 @@ app.get('/onboard', async (req, res) => {
 app.use(requestIp.mw())
 
 app.use('/api', router)
+
+app.use("/videos", express.static('videos'))
 
 app.listen(5000, () => {
   console.log('App started on port 5000')

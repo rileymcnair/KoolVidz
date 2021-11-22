@@ -17,6 +17,11 @@ class DAL {
     return result.rows.shift()
   }
 
+  static async has_video (video_id) {
+    const video = await DAL.get_video(video_id)
+    return !!video
+  }
+
   static async search_video (db, search_words, is_title) {
     let query = 'SELECT * FROM videos WHERE 1 = 1'
 

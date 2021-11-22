@@ -10,9 +10,18 @@ const SE = require('./search_engine')
 const app = express()
 const router = express.Router()
 
+function is_valid_video_id (video_id) {
+  return /^\d+$/.test(video_id)
+}
+
 router.post('/video/create', async (req, res) => {
   const { title } = req.headers
   const { description } = req.headers
+
+  if (!title || !description) {
+    res.sendStatus(400)
+    return
+  }
 
   const id = await DAL.create_video(title, description)
   res.status(200).json(id)
@@ -20,23 +29,44 @@ router.post('/video/create', async (req, res) => {
 
 router.get('/video/get', async (req, res) => {
   const { video_id } = req.headers
+
+  if (!is_valid_video_id(video_id)) {
+    res.sendStatus(400)
+    return
+  }
+
   await DAL.increment_video_views(video_id)
   const video = await DAL.get_video(video_id)
+
+  if (!video) {
+    res.sendStatus(404)
+    return
+  }
 
   res.status(200).json(video)
 })
 
 router.get('/video/search', async (req, res) => {
   const { search_str } = req.headers
-  const results = await SE.search(search_str)
+  const results = await SE.search(search_str || '')
 
   res.status(200).json(results)
 })
 
 router.post('/rating/create', async (req, res) => {
   const { video_id } = req.headers
-  const { is_like } = req.headers
+  const is_like = req.headers.is_like == 'true'
   const ip_address = req.clientIp
+
+  if (!is_valid_video_id(video_id)) {
+    res.sendStatus(400)
+    return
+  }
+
+  if (!(await DAL.has_video(video_id))) {
+    res.sendStatus(404)
+    return
+  }
 
   await DAL.delete_rating(video_id, ip_address)
   await DAL.create_rating(video_id, is_like, ip_address)
@@ -47,6 +77,11 @@ router.post('/rating/create', async (req, res) => {
 router.get('/rating/get', async (req, res) => {
   const { video_id } = req.headers
 
+  if (!is_valid_video_id(video_id)) {
+    res.sendStatus(400)
+    return
+  }
+
   const rating = await DAL.get_video_ratings(video_id)
 
   res.status(200).json(rating)
@@ -55,6 +90,11 @@ router.get('/rating/get', async (req, res) => {
 router.get('/rating/has', async (req, res) => {
   const { video_id } = req.headers
   const ip_address = req.clientIp
+
+  if (!is_valid_video_id(video_id)) {
+    res.sendStatus(400)
+    return
+  }
 
   const rating = await DAL.has_rating(video_id, ip_address)
 
@@ -65,6 +105,11 @@ router.delete('/rating/delete', async (req, res) => {
   const { video_id } = req.headers
   const ip_address = req.clientIp
 
+  if (!is_valid_video_id(video_id)) {
+    res.sendStatus(400)
+    return
+  }
+
   await DAL.delete_rating(video_id, ip_address)
 
   res.sendStatus(200)
@@ -74,6 +119,16 @@ router.post('/comment/create', async (req, res) => {
   const { video_id } = req.headers
   const { content } = req.headers
 
+  if (!is_valid_video_id(video_id)) {
+    res.sendStatus(400)
+    return
+  }
+
+  if (!(await DAL.has_video(video_id))) {
+    res.sendStatus(404)
+    return
+  }
+
   await DAL.create_comment(video_id, content)
 
   res.sendStatus(200)
@@ -81,6 +136,11 @@ router.post('/comment/create', async (req, res) => {
 
 router.get('/comment/get', async (req, res) => {
   const { video_id } = req.headers
+
+  if (!is_valid_video_id(video_id)) {
+    res.sendStatus(400)
+    return
+  }
 
   const comments = await DAL.get_video_comments(video_id)
 
@@ -93,7 +153,6 @@ app.get('/video', (req, res) => {
 
 app.get('/test', async (req, res) => {
   const value = await SE.search('1 2 3 4 5 6 7 8 9 10 11', 1000)
-  console.log(value)
   res.sendStatus(200)
 })
 

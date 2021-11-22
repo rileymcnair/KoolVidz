@@ -19,4 +19,3 @@
 
  - Run `npm run lint` to lint your code. Some issues can be fixed with `npm run fix-lint`
  - Remove your password from `database.js`
- - Delete videos in /backend/videos

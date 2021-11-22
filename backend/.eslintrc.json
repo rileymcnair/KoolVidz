@@ -9,6 +9,9 @@
     "parserOptions": {
         "ecmaVersion": 8
     },
-    "rules": {
+    "rules":
+    {
+        "camelcase": "off",
+        "eqeqeq": "off"
     }
 }

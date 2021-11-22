@@ -14,7 +14,7 @@ class DAL {
     const values = [video_id]
     const result = await new DB().query(query, values)
 
-    return result.rows[0]
+    return result.rows.shift()
   }
 
   static async search_video (db, search_words, is_title) {

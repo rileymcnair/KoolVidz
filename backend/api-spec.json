@@ -1,0 +1,179 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "koolvidz backend",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/video/create": {
+            "post": {
+
+            },
+            "parameters": [
+                {
+                    "name": "title",
+                    "description": "",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "header",
+                    "required": true
+                },
+                {
+                    "name": "description",
+                    "description": "",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "header",
+                    "required": true
+                }
+            ]
+        },
+        "/api/video/get": {
+            "get": {
+
+            },
+            "parameters": [
+                {
+                    "name": "video_id",
+                    "description": "",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "header"
+                }
+            ]
+        },
+        "/api/video/search": {
+            "get": {
+
+            },
+            "parameters": [
+                {
+                    "name": "search_str",
+                    "description": "",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "header",
+                    "required": true
+                }
+            ]
+        },
+        "/api/rating/create": {
+            "post": {
+
+            },
+            "parameters": [
+                {
+                    "name": "video_id",
+                    "description": "",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "header",
+                    "required": true
+                },
+                {
+                    "name": "is_like",
+                    "description": "",
+                    "schema": {
+                        "type": "boolean"
+                    },
+                    "in": "header",
+                    "required": true
+                }
+            ]
+        },
+        "/api/rating/get": {
+            "get": {
+
+            },
+            "parameters": [
+                {
+                    "name": "video_id",
+                    "description": "",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "header",
+                    "required": true
+                }
+            ]
+        },
+        "/api/rating/has": {
+            "get": {
+
+            },
+            "parameters": [
+                {
+                    "name": "video_id",
+                    "description": "",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "header",
+                    "required": true
+                }
+            ]
+        },
+        "/api/rating/delete": {
+            "delete": {
+
+            },
+            "parameters": [
+                {
+                    "name": "video_id",
+                    "description": "",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "header",
+                    "required": true
+                }
+            ]
+        },
+        "/api/comment/create": {
+            "post": {
+
+            },
+            "parameters": [
+                {
+                    "name": "video_id",
+                    "description": "",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "header",
+                    "required": true
+                },
+                {
+                    "name": "content",
+                    "description": "",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "header",
+                    "required": true
+                }
+            ]
+        },
+        "/api/comment/get": {
+            "get": {
+
+            },
+            "parameters": [
+                {
+                    "name": "video_id",
+                    "description": "",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "header",
+                    "required": true
+                }
+            ]
+        }
+    }
+}

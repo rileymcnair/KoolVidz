@@ -10,7 +10,7 @@ export default class Home extends Component {
     }
     async componentDidMount() {
         try {
-            const response = await fetch(''); //Link to the database
+            const response = await fetch(''); //Link to the database: Videos directory
             const data = await response.json();
             this.setState({ videos: [...data] });
         } catch (error) {
@@ -26,7 +26,7 @@ export default class Home extends Component {
                         <div className="col-md-4" key={video.id}>
                             <Link to={`/player/${video.id}`}>
                                 <div className="card border-0">
-                                    <img src={``} /*Link to the database*/alt={video.name} /> 
+                                    <img src={``} /*Link to the database: Video Image/Thumbnail */alt={video.name} /> 
                                     <div className="card-body">
                                         <p>{video.name}</p>
                                         <p>{video.duration}</p>

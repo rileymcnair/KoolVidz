@@ -9,7 +9,7 @@ export default class Player extends Component {
     }
     async componentDidMount() {
         try {
-            const res = await fetch(` {this.state.videoId}/data`); //Link to database
+            const res = await fetch(` {this.state.videoId}/data`); //Link to database: Video Metadata
             const data = await res.json();
             this.setState({ videoData: data });
         } catch (error) {
@@ -21,7 +21,7 @@ export default class Player extends Component {
             <div className="App">
                 <header className="App-header">
                     <video controls muted autoPlay>
-                        <source src={` {this.state.videoId}`} /*Link to database*/type="video/mp4"></source>
+                        <source src={` {this.state.videoId}`} /*Link to database: Video ID*/type="video/mp4"></source>
                     </video>
                     <h1>{ this.state.videoData.name }</h1>
                 </header>

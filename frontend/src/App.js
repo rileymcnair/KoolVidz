@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Home from './Home';
 import Player from './Player';
+import API from '../../backend/api-spec.json';
 
 function App() {
   return (

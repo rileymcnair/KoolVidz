@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from './Header.js'
 import './Home.css'
-import API from '../../backend/api-spec.json';
 
 export default class Home extends Component {
     constructor() {

@@ -8,7 +8,6 @@ import {
 import Home from './Home';
 import Player from './Player';
 import Header from './Header';
-import API from '../../backend/api-spec.json';
 
 function App() {
   return (

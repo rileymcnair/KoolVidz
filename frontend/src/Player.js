@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import API from '../../backend/api-spec.json';
+
 export default class Player extends Component {
     constructor(props) {
         super(props);

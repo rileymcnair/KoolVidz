@@ -7,7 +7,22 @@ export default class Home extends Component {
     constructor() {
         super();
         this.state = {
-            videos: []
+            videos: [{
+                id: 1,
+                name: "test",
+                duration: 5
+            },
+            {
+                id: 2,
+                name: "test2",
+                duration: 5
+            },
+            {
+                id: 3,
+                name: "test3",
+                duration: 5
+            }
+        ]
         };
     }
     async componentDidMount() {

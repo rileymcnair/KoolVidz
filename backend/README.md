@@ -7,7 +7,7 @@
  3. `cd backend`
  4. `npm install`
  5. Add your database password to `database.js`
- 6. Start the project with `npm run dev`
+ 6. Start the project with `npm run start`
  7. `GET /onboard` to create the database
 
 ## Testing

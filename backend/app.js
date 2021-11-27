@@ -9,14 +9,16 @@ const SE = require('./search_engine')
 const app = express()
 const router = express.Router()
 const upload = multer({ dest: './videos' })
+const cors = require('cors')
+
 
 function is_valid_video_id (video_id) {
   return /^\d+$/.test(video_id)
 }
 
 router.post('/video/create', upload.single('video'), async (req, res) => {
-  const { title } = req.headers
-  const { description } = req.headers
+  const { title } = req.query
+  const { description } = req.query
 
   if (!req.file || !title || !description) {
     res.sendStatus(400)
@@ -30,7 +32,7 @@ router.post('/video/create', upload.single('video'), async (req, res) => {
 })
 
 router.get('/video/get', async (req, res) => {
-  const { video_id } = req.headers
+  const { video_id } = req.query
 
   if (!is_valid_video_id(video_id)) {
     res.sendStatus(400)
@@ -49,15 +51,15 @@ router.get('/video/get', async (req, res) => {
 })
 
 router.get('/video/search', async (req, res) => {
-  const { search_str } = req.headers
+  const { search_str } = req.query
   const results = await SE.search(search_str || '')
 
   res.status(200).json(results)
 })
 
 router.post('/rating/create', async (req, res) => {
-  const { video_id } = req.headers
-  const is_like = req.headers.is_like == 'true'
+  const { video_id } = req.query
+  const is_like = req.query.is_like == 'true'
   const ip_address = req.clientIp
 
   if (!is_valid_video_id(video_id)) {
@@ -77,7 +79,7 @@ router.post('/rating/create', async (req, res) => {
 })
 
 router.get('/rating/get', async (req, res) => {
-  const { video_id } = req.headers
+  const { video_id } = req.query
 
   if (!is_valid_video_id(video_id)) {
     res.sendStatus(400)
@@ -90,7 +92,7 @@ router.get('/rating/get', async (req, res) => {
 })
 
 router.get('/rating/has', async (req, res) => {
-  const { video_id } = req.headers
+  const { video_id } = req.query
   const ip_address = req.clientIp
 
   if (!is_valid_video_id(video_id)) {
@@ -104,7 +106,7 @@ router.get('/rating/has', async (req, res) => {
 })
 
 router.delete('/rating/delete', async (req, res) => {
-  const { video_id } = req.headers
+  const { video_id } = req.query
   const ip_address = req.clientIp
 
   if (!is_valid_video_id(video_id)) {
@@ -118,8 +120,8 @@ router.delete('/rating/delete', async (req, res) => {
 })
 
 router.post('/comment/create', async (req, res) => {
-  const { video_id } = req.headers
-  const { content } = req.headers
+  const { video_id } = req.query
+  const { content } = req.query
 
   if (!is_valid_video_id(video_id)) {
     res.sendStatus(400)
@@ -137,7 +139,7 @@ router.post('/comment/create', async (req, res) => {
 })
 
 router.get('/comment/get', async (req, res) => {
-  const { video_id } = req.headers
+  const { video_id } = req.query
 
   if (!is_valid_video_id(video_id)) {
     res.sendStatus(400)
@@ -168,6 +170,8 @@ app.use(requestIp.mw())
 app.use('/api', router)
 
 app.use("/videos", express.static('videos'))
+
+app.use(cors())
 
 app.listen(5000, () => {
   console.log('App started on port 5000')

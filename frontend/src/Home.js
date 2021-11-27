@@ -6,30 +6,14 @@ import './Home.css'
 export default class Home extends Component {
     constructor() {
         super();
-        this.state = {
-            videos: [{
-                id: 1,
-                name: "test",
-                duration: 5
-            },
-            {
-                id: 2,
-                name: "test2",
-                duration: 5
-            },
-            {
-                id: 3,
-                name: "test3",
-                duration: 5
-            }
-        ]
-        };
+        this.state = {videos: []};
     }
     async componentDidMount() {
         try {
-            const response = await fetch(''); //Link to the database: Videos directory
+            const response = await fetch('/api/video/search?search_str='); //Link to the database: Videos directory
             const data = await response.json();
-            this.setState({ videos: [...data] });
+            console.log(data)
+            this.setState({ videos: data });
         } catch (error) {
             console.log(error);
         }
@@ -47,10 +31,9 @@ export default class Home extends Component {
                         <div className="col-md-4" key={video.id}>
                             <Link to={`/player/${video.id}`}>
                                 <div className="card border-0">
-                                    <img src={``} /*Link to the database: Video Image/Thumbnail */alt={video.name} /> 
                                     <div className="card-body">
-                                        <p>{video.name}</p>
-                                        <p>{video.duration}</p>
+                                        <p>{video.title}</p>
+                                        <p>{video.description}</p>
                                     </div>
                                 </div>
                             </Link>

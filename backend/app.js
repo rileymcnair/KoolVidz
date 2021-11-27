@@ -1,6 +1,6 @@
 const express = require('express')
 const requestIp = require('request-ip')
-const multer  = require('multer')
+const multer = require('multer')
 
 const DB = require('./database')
 const DAL = require('./data_access_layer')
@@ -10,7 +10,6 @@ const app = express()
 const router = express.Router()
 const upload = multer({ dest: './videos' })
 const cors = require('cors')
-
 
 function is_valid_video_id (video_id) {
   return /^\d+$/.test(video_id)
@@ -25,7 +24,7 @@ router.post('/video/create', upload.single('video'), async (req, res) => {
     return
   }
 
-  const {filename} = req.file
+  const { filename } = req.file
 
   const id = await DAL.create_video(title, description, filename)
   res.status(200).json(id)
@@ -169,7 +168,7 @@ app.use(requestIp.mw())
 
 app.use('/api', router)
 
-app.use("/videos", express.static('videos'))
+app.use('/videos', express.static('videos'))
 
 app.use(cors())
 

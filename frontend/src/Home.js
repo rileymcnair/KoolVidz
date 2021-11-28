@@ -21,10 +21,9 @@ export default class Home extends Component {
     render() {
         return (
             <div className="App App-header">
-                <div className="topbar">
+                
                 <Header /> 
-                </div>
-              
+               
                 <div className="container">
                     <div className="row">
                         {this.state.videos.map(video =>

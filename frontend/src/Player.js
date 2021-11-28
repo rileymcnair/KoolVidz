@@ -10,9 +10,13 @@ export default class Player extends Component {
             videoData: {},
             ratings: 0,
             likeStatus: null,
-            comments: []
+            comments: [],
+            value: ''
         };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
+
     async componentDidMount() {
         try {
             const data = await (await fetch(`/api/video/get?video_id=${this.state.videoId}`)).json(); //Link to database: Video Metadata
@@ -27,6 +31,16 @@ export default class Player extends Component {
         } catch (error) {
             console.log(error);
         }
+    }
+
+    handleChange(event) {
+        this.setState({value: event.target.value});
+      }
+    
+    handleSubmit = async() => {
+        await fetch(`/api/comment/create?video_id=${this.state.videoId}&content=${this.state.value}`, {method: 'POST'})
+        var new_comments = await (await fetch(`/api/comment/get?video_id=${this.state.videoId}`)).json();
+        this.setState({ comments: new_comments })
     }
 
     handleLikes = async (type) => {
@@ -87,6 +101,10 @@ export default class Player extends Component {
                 <div className="comments">
                     {this.state.comments.map(comment => <Comment className="comment" message={comment.content}></Comment>)}
                 </div>
+                <input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Write a Comment" />
+                <button onClick={this.handleSubmit}>
+                    Submit
+                </button>
             </div>
         )
     }

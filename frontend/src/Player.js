@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import "./Player.css"
+import Comment from "./Comment.js"
 
 export default class Player extends Component {
     constructor(props) {
@@ -8,7 +9,8 @@ export default class Player extends Component {
             videoId: this.props.match.params.id,
             videoData: {},
             ratings: 0,
-            likeStatus: null
+            likeStatus: null,
+            comments: []
         };
     }
     async componentDidMount() {
@@ -16,10 +18,12 @@ export default class Player extends Component {
             const data = await (await fetch(`/api/video/get?video_id=${this.state.videoId}`)).json(); //Link to database: Video Metadata
             const rating_data = await (await fetch(`/api/rating/get?video_id=${this.state.videoId}`)).json();
             const current_like_data = await (await fetch(`/api/rating/has?video_id=${this.state.videoId}`)).json();
+            const comment_data = await (await fetch(`/api/comment/get?video_id=${this.state.videoId}`)).json();
             console.log(data.filename);
             this.setState({ videoData: data });
             this.setState({ ratings: rating_data });
-            this.setState({ likeStatus: current_like_data})
+            this.setState({ likeStatus: current_like_data })
+            this.setState({ comments: comment_data })
         } catch (error) {
             console.log(error);
         }
@@ -79,9 +83,9 @@ export default class Player extends Component {
                         </button>
                         Ratings: {this.state.ratings}
                     </p>
-                    <p>
-                        Like Status: {test}
-                    </p>
+                </div>
+                <div className="comments">
+                    {this.state.comments.map(comment => <Comment className="comment" message={comment.content}></Comment>)}
                 </div>
             </div>
         )

@@ -17,6 +17,7 @@ h1 {
     align-items: center;
     padding-left: 40px;
     padding-right: 40px;
+    cursor:pointer;
 }
 
 .header_search {
@@ -44,4 +45,9 @@ input {
     transform: scale(2.2);
     padding-left: 11px;
     cursor: pointer;
+}
+
+.homeLink {
+    text-decoration: none;
+    color: black;
 }

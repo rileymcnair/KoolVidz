@@ -7,6 +7,9 @@
     height: 100px;
     justify-content: space-between;
     object-fit: contain;
+    position: sticky;
+    top:0;
+    z-index: 100;
 }
 h1 {
     font-size: 40px;
@@ -24,6 +27,7 @@ h1 {
     display: flex;
     align-items: center;
     width: 65%;
+    min-width: 30%;
     padding-right: 160px;
 }
 
@@ -45,6 +49,10 @@ input {
     transform: scale(2.2);
     padding-left: 11px;
     cursor: pointer;
+}
+
+.searchIcon:hover {
+    color: rgb(179, 177, 177);
 }
 
 .homeLink {

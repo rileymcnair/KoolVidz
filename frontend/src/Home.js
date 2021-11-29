@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from './Header.js'
 import './Home.css'
+import VideoBox from './VideoBox.js';
 
 export default class Home extends Component {
     constructor() {
@@ -23,19 +24,14 @@ export default class Home extends Component {
             <div className="App App-header">
                 
                 <Header /> 
+
+     
                
                 <div className="container">
                     <div className="row">
                         {this.state.videos.map(video =>
                         <div className="col-md-4" key={video.id}>
-                            <Link to={`/player/${video.id}`}>
-                                <div className="card border-0">
-                                    <div className="card-body">
-                                        <p>{video.title}</p>
-                                        <p>{video.description}</p>
-                                    </div>
-                                </div>
-                            </Link>
+                            <VideoBox className='videoBox' id={video.id} title={video.title} description={video.description}/>
                         </div>
                         )}
                     </div>

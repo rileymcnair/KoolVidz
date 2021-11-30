@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "./Player.css";
 import Comment from "./Comment.js";
+import Header from "./Header.js";
 
 export default class Player extends Component {
     constructor(props) {

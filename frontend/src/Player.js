@@ -65,39 +65,48 @@ export default class Player extends Component {
 
     render() {
 
-        let test = "";
+        var likeButtonClass = ""
+        var dislikeButtonClass = ""
+
         if (this.state.likeStatus === null){
-            test = "null"
+            likeButtonClass = "buttonBefore"
+            dislikeButtonClass = "buttonBefore"
         }
         else if (this.state.likeStatus === true){
-            test = "true"
+            likeButtonClass = "likeButton"
+            dislikeButtonClass = "buttonBefore"
         }
         else if (this.state.likeStatus === false) {
-            test = "false"
+            likeButtonClass = "buttonBefore"
+            dislikeButtonClass = "dislikeButton"
         }
+
+        
 
         return (
             <div className="container">
                 <Header />
-                <div className="videoView">
+                <div className="videoContainer">
                     <video controls muted autoPlay key={this.state.videoData.filename} className="videoPlayer">
                         <source src={`/videos/${this.state.videoData.filename}`} /*Link to database: Video ID*/type="video/mp4"></source>
                     </video>
-                </div>
-                <div className="popularity">
-                    <h1>{ this.state.videoData.title }</h1>
-                    <p>
-                        {this.state.videoData.views} views
-                    </p>
-                    <p>
-                        <button className="likebutton" onClick={() => this.handleLikes("like")}>
-                            Like
-                        </button>
-                        <button className="dislikebutton" onClick={() => this.handleLikes("dislike")}>
-                            Dislike
-                        </button>
-                        Ratings: {this.state.ratings}
-                    </p>
+                    <div className="popularity">
+                        <div className="titleViewCount">
+                            <h1 className="titleText">{ this.state.videoData.title }</h1>
+                            <p className="viewText">
+                                {this.state.videoData.views} views
+                            </p>
+                        </div>
+                        <div className="ratings">
+                            <p>
+                                Ratings: {this.state.ratings}
+                            </p>
+                            <div className="ratingButtons">
+                                <button className={likeButtonClass} onClick={() => this.handleLikes("like")}>Like</button>
+                                <button className={dislikeButtonClass} onClick={() => this.handleLikes("dislike")}>Dislike</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="feedback">
                     <div className="comments">

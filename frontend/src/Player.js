@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import "./Player.css";
 import Comment from "./Comment.js";
+import {Icon} from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css';
 
 export default class Player extends Component {
     constructor(props) {
@@ -68,18 +70,26 @@ export default class Player extends Component {
 
         var likeButtonClass = ""
         var dislikeButtonClass = ""
+        var likeButtonIcon = ""
+        var dislikeButtonIcon = ""
 
         if (this.state.likeStatus === null){
-            likeButtonClass = "buttonBefore"
-            dislikeButtonClass = "buttonBefore"
+            likeButtonClass = "likeButtonBefore"
+            dislikeButtonClass = "dislikeButtonBefore"
+            likeButtonIcon = "thumbs up outline"
+            dislikeButtonIcon = "thumbs down outline"
         }
         else if (this.state.likeStatus === true){
             likeButtonClass = "likeButton"
-            dislikeButtonClass = "buttonBefore"
+            dislikeButtonClass = "dislikeButtonBefore"
+            likeButtonIcon = "thumbs up"
+            dislikeButtonIcon = "thumbs down outline"
         }
         else if (this.state.likeStatus === false) {
-            likeButtonClass = "buttonBefore"
+            likeButtonClass = "likeButtonBefore"
             dislikeButtonClass = "dislikeButton"
+            likeButtonIcon = "thumbs up outline"
+            dislikeButtonIcon = "thumbs down"
         }
 
         return (
@@ -96,12 +106,18 @@ export default class Player extends Component {
                             </p>
                         </div>
                         <div className="ratings">
-                            <p>
+                            <p className="ratingText">
                                 Ratings: {this.state.ratings}
                             </p>
                             <div className="ratingButtons">
-                                <button className={likeButtonClass} onClick={() => this.handleLikes("like")}>Like</button>
-                                <button className={dislikeButtonClass} onClick={() => this.handleLikes("dislike")}>Dislike</button>
+                                <button className={likeButtonClass} onClick={() => this.handleLikes("like")}>
+                                    <Icon enabled name={likeButtonIcon} size='large' />
+                                    <p>Like</p>
+                                </button>
+                                <button className={dislikeButtonClass} onClick={() => this.handleLikes("dislike")}>
+                                    <Icon enabled name={dislikeButtonIcon} size='large' />
+                                    <p>Dislike</p>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -110,14 +126,14 @@ export default class Player extends Component {
                     <h3 className="commentHeader">
                         {this.state.comments.length} Comments
                     </h3>
-                    <div className="comments">
-                        {this.state.comments.map(comment => <Comment className="comment" message={comment.content}></Comment>)}
-                    </div>
-                    <input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Write a Comment" />
+                    <input type="text" className="commentInput" value={this.state.value} onChange={this.handleChange} placeholder="Write a Comment" />
                     <div className="submitButtonDiv">
                         <button className="submitButton" onClick={this.handleSubmit}>
                             COMMENT
                         </button>
+                    </div>
+                    <div className="comments">
+                        {this.state.comments.map(comment => <Comment className="comment" message={comment.content}></Comment>)}
                     </div>
                 </div>
             </div>

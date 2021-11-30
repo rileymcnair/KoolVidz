@@ -4,7 +4,7 @@ UCLA CS-35L Project
 Team Members: Riley McNair, Evan Chen, Leon Zhang, Maxwell Liu, Orrin Zhong
 
 Our team plans to implement a video sharing service to provide information and entertainment to users. 
-This includes a search bar, like/dislike system, and a top videos page.
+This includes a search bar, like/dislike system, and a view counter.
 
 Planned Features:
 

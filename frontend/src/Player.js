@@ -78,17 +78,17 @@ export default class Player extends Component {
         }
 
         return (
-            <div className="App">
-                <header className="App-header">
-                    <Header />
-                    <h1>{ this.state.videoData.title }</h1>
-                    <video controls muted autoPlay key={this.state.videoData.filename}>
+            <div className="container">
+                <Header />
+                <div className="videoView">
+                    <video controls muted autoPlay key={this.state.videoData.filename} className="videoPlayer">
                         <source src={`/videos/${this.state.videoData.filename}`} /*Link to database: Video ID*/type="video/mp4"></source>
                     </video>
-                </header>
-                <div className="Popularity">
+                </div>
+                <div className="popularity">
+                    <h1>{ this.state.videoData.title }</h1>
                     <p>
-                        Views: {this.state.videoData.views}
+                        {this.state.videoData.views} views
                     </p>
                     <p>
                         <button className="likebutton" onClick={() => this.handleLikes("like")}>
@@ -100,13 +100,15 @@ export default class Player extends Component {
                         Ratings: {this.state.ratings}
                     </p>
                 </div>
-                <div className="comments">
-                    {this.state.comments.map(comment => <Comment className="comment" message={comment.content}></Comment>)}
+                <div className="feedback">
+                    <div className="comments">
+                        {this.state.comments.map(comment => <Comment className="comment" message={comment.content}></Comment>)}
+                    </div>
+                    <input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Write a Comment" />
+                    <button onClick={this.handleSubmit}>
+                        Submit
+                    </button>
                 </div>
-                <input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Write a Comment" />
-                <button onClick={this.handleSubmit}>
-                    Submit
-                </button>
             </div>
         )
     }

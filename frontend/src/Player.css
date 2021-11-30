@@ -20,8 +20,41 @@
     font-size: 16px;
   }
 
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
 .comment {
     background-color: #af4ca7;
     text-align: center;
     border: 3px solid green;
+}
+
+.videoContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid green;
+}
+
+.videoPlayer {
+    display: flex;
+    width: 100%;
+}
+
+.popularity {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid pink;
+}
+
+.feedback {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid blue;
 }

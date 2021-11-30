@@ -7,7 +7,7 @@ const DATABASE_NAME = 'koolvidz'
 const DATABASE_PORT = 5432
 const CONFIG = {
   user: DATABASE_USER,
-  password: '', // Do not commit!
+  password: 'dataorrin', // Do not commit!
   port: DATABASE_PORT,
   host: DATABASE_HOST 
 }

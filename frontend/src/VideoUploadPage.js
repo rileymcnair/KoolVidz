@@ -25,66 +25,52 @@ function UploadVideoPage() {
         setDescription(event.currentTarget.value)
     }
 
-    const onSubmit = () => {
-    
-    }
-
-    const onDrop = (files) => {
- 
-    }
+   
 
     return (
         <div className="App App-header">
                 
-                <Header /> 
+            <Header /> 
 
         <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
         
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <Title level={2} > Upload a Video! </Title>
+            
+            <Title level={2} > Upload a Video! <UploadOutlined/> </Title>
+            
         </div>
-</div>
-        <Form onSubmit={onSubmit}>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Dropzone 
-                    multiple={false}
-                    maxSize={800000000}>
-                    {({ getRootProps, getInputProps }) => (
-                        <div style={{ width: '300px', height: '240px', border: '1px solid lightgray', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                            {...getRootProps()}
-                        > 
-                            <input {...getInputProps()} />
-                            
-                            <UploadOutlined style={{fontSize:'80px' }} />
-                        </div>
-                    )}
-                </Dropzone>
 
-            </div>
+        </div>
 
-            <br /><br />
-            <label>Title</label>
-            <br /><br />
+        <form enctype="multipart/form-data" method="POST" action={`/api/video/create?title=${title}&description=${Description}`}>
+        
+        <input key="video" name="video" type="file" id="video" style={{ width: '500px', height: '240px', border: '1px solid lightgray', 
+        display: 'flex', alignItems: 'center', justifyContent: 'center' ,textAlign: 'center'}}/> 
+        
+        <br /><br />
+        <label>Title</label>
+        <br /><br />
             <Input
                  onChange={handleChangeTitle}
                  value={title}
+                 style={{border: '5px solid blue' }}
+                 placeholder="Enter title here"
             />
-            <br /><br />
-            <label>Description</label>
-            <br /><br />
+        <br /><br />
+        <label>Description</label>
+        <br /><br />
             <TextArea
                 rows={4}
-                style={{width:'800px' }}
+                style={{width:'800px' , border: '5px solid lightblue'}}
                 onChange={handleChangeDecsription}
                 value={Description}
+                placeholder="Enter description here"
             />
             <br /><br />
 
-            <Button type="primary" size="large" onClick={onSubmit}>
-                Submit
-            </Button>
-
-        </Form>
+        <input type="submit" value="Submit"/>
+        
+        </form>
     </div>
     )
 }

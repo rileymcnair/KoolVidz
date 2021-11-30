@@ -1,8 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import { Typography, Button, Form, message, Input } from 'antd';
 import {UploadOutlined} from '@ant-design/icons';
-import Dropzone from 'react-dropzone';
-import axios from 'axios';
 import Header from "./Header.js";
 
 const { Title } = Typography;

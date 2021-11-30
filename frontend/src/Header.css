@@ -26,9 +26,9 @@ h1 {
 .header_search {
     display: flex;
     align-items: center;
-    width: 65%;
-    min-width: 30%;
-    padding-right: 160px;
+    width: 60%;
+    min-width: 35%;
+    padding-right: 20px;
 }
 
 input {
@@ -41,21 +41,45 @@ input {
 }
 
 .videocamIcon {
-    transform: scale(2.4);
-    padding-right: 8px;
+    /* transform: scale(2.4); */
+    padding-right: 6px;
 }
 
 .searchIcon {
-    transform: scale(2.2);
+    transform: scale(1.2);
     padding-left: 11px;
     cursor: pointer;
 }
 
 .searchIcon:hover {
-    color: rgb(179, 177, 177);
+    color: lightgray;
 }
 
 .homeLink {
     text-decoration: none;
     color: black;
+}
+
+.upload_logo {
+    display: flex;
+    align-items: center;
+    margin-left: 40px;
+    margin-right: 70px;
+    padding-right: 20px;
+    padding-left: 20px;
+    cursor:pointer;
+    text-decoration: none;
+}
+.upload_logo > h1 {
+    font-size: 30px;
+    padding-right: 8px;
+}
+
+.uploadLink{
+    text-decoration: none;
+    color: black;
+}
+
+.upload_logo:hover {
+    background-color: lightgray;
 }

@@ -24,8 +24,6 @@ export default class Home extends Component {
             <div className="App App-header">
                 
                 <Header /> 
-
-     
                
                 <div className="container">
                     <div className="row">

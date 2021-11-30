@@ -40,9 +40,3 @@ selection.
   
   ○ Comments will be associated with and displayed under a video.
   
-● Unique Feature #4: Top Videos Page
-
-  ○ The homepage displays the most popular videos.
-  
-  ○ The order is based on a weighing system using like to dislike ratio and
-    view count.

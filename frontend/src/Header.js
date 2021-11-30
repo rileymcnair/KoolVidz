@@ -2,7 +2,7 @@ import React from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 
-import {VideoCameraOutlined, SearchOutlined} from '@ant-design/icons';
+import {VideoCameraOutlined, SearchOutlined, UploadOutlined} from '@ant-design/icons';
 
 
 
@@ -30,10 +30,17 @@ function Header() {
                 <h1>KoolVidz</h1>
             </div>
             </Link>
+            
             <div className="header_search">
                 <input type="text" placeholder="Search videos" onKeyPress={searchBoxListener} ></input> 
                 <SearchOutlined style={{fontSize:'45px' }}/>
             </div> 
+
+            <Link to='/videoupload' className='uploadLink'>
+            <div className="upload_logo" >
+                <UploadOutlined style={{fontSize:'45px', color:'black' }}/> 
+            </div>
+            </Link>
         </div>
     )
 }

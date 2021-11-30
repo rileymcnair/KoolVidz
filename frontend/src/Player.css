@@ -42,16 +42,17 @@
 
 .comment {
     background-color: white;
-    text-align: center;
-    border: 1px solid black
+    border: 1px solid black;
+    padding-left: 1%;
+    padding-right: 1%;
+    overflow-wrap: break-word;
 }
 
 .videoContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: left;
-    border: 3px solid green;
+    /* border: 3px solid green; */
     padding-top: 20px;
     padding-left: 20px;
     width: 50%
@@ -65,7 +66,7 @@
 .popularity {
     flex: 1;
     display: flex;
-    border: 3px solid pink;
+    /* border: 3px solid pink; */
     padding-left: 20px;
     align-items: center;
 }
@@ -73,7 +74,10 @@
 .feedback {
     display: flex;
     flex-direction: column;
-    border: 3px solid blue;
+    /* border: 3px solid blue; */
+    padding-left: 20px;
+    padding-right: 40px;
+    flex-basis: 100%;
 }
 
 .viewText {
@@ -101,4 +105,38 @@
   display: flex;
   width: 75%;
   justify-content: space-between;
+}
+
+.commentHeader {
+  margin: 0;
+}
+
+.submitButtonDiv{
+  height: 50px;
+  padding: 10px;
+}
+
+.submitButton{
+  height: 100%;
+  width: 30%;
+  float: right;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: greenyellow;
+}
+
+.buttonBefore:hover{
+  cursor: pointer;
+}
+
+.likeButton:hover{
+  cursor: pointer;
+}
+
+.dislikeButton:hover{
+  cursor: pointer;
+}
+
+.submitButton:hover{
+  cursor: pointer;
 }

@@ -41,6 +41,7 @@ export default class Player extends Component {
         await fetch(`/api/comment/create?video_id=${this.state.videoId}&content=${this.state.value}`, {method: 'POST'})
         var new_comments = await (await fetch(`/api/comment/get?video_id=${this.state.videoId}`)).json();
         this.setState({ comments: new_comments })
+        this.setState({ value: ''})
     }
 
     handleLikes = async (type) => {
@@ -106,13 +107,18 @@ export default class Player extends Component {
                     </div>
                 </div>
                 <div className="feedback">
+                    <h3 className="commentHeader">
+                        {this.state.comments.length} Comments
+                    </h3>
                     <div className="comments">
                         {this.state.comments.map(comment => <Comment className="comment" message={comment.content}></Comment>)}
                     </div>
                     <input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Write a Comment" />
-                    <button onClick={this.handleSubmit}>
-                        Submit
-                    </button>
+                    <div className="submitButtonDiv">
+                        <button className="submitButton" onClick={this.handleSubmit}>
+                            COMMENT
+                        </button>
+                    </div>
                 </div>
             </div>
         )

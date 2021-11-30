@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
+import UploadVideoPage from './VideoUploadPage'
 //import './App.css';
 import {
   Route,
@@ -16,6 +17,8 @@ function App() {
       <Route exact path="/" component={Home} /*More pages should be added*/>
       </Route> 
       <Route path="/player/:id" component={Player}>
+      </Route>
+      <Route path="/videoupload" component={UploadVideoPage}>
       </Route>
       </Switch>
     </Router>

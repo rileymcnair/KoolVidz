@@ -69,6 +69,7 @@ input {
     padding-left: 20px;
     cursor:pointer;
     text-decoration: none;
+    border-radius: 10px;
 }
 .upload_logo > h1 {
     font-size: 30px;

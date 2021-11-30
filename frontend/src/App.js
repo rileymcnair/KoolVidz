@@ -9,10 +9,13 @@ import {
 } from "react-router-dom";
 import Home from './Home';
 import Player from './Player';
+import Header from "./Header.js"
 
 function App() {
   return (
+    
     <Router>
+      <Header /> 
       <Switch> 
       <Route exact path="/" component={Home} /*More pages should be added*/>
       </Route> 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import "./Player.css";
 import Comment from "./Comment.js";
-import Header from "./Header.js"
 
 export default class Player extends Component {
     constructor(props) {
@@ -80,7 +79,6 @@ export default class Player extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <Header />
                     <h1>{ this.state.videoData.title }</h1>
                     <video controls muted autoPlay key={this.state.videoData.filename}>
                         <source src={`/videos/${this.state.videoData.filename}`} /*Link to database: Video ID*/type="video/mp4"></source>

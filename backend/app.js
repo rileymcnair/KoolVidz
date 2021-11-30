@@ -172,6 +172,6 @@ app.use('/videos', express.static('videos'))
 
 app.use(cors())
 
-app.listen(4000, () => {
-  console.log('App started on port 4000')
+app.listen(6000, () => {
+  console.log('App started on port 6000')
 })

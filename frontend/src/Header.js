@@ -26,18 +26,19 @@ function Header() {
         <div className="header">
             <Link to='/' className='homeLink'>
             <div className="header_logo" >
-                <VideoCameraOutlined style={{fontSize:'45px' }}/> 
+                <VideoCameraOutlined className='videocamIcon' style={{fontSize:'45px' }}/> 
                 <h1>KoolVidz</h1>
             </div>
             </Link>
             
             <div className="header_search">
                 <input type="text" placeholder="Search videos" onKeyPress={searchBoxListener} ></input> 
-                <SearchOutlined style={{fontSize:'45px' }}/>
+                <SearchOutlined className='searchIcon'style={{fontSize:'45px' }}/>
             </div> 
 
             <Link to='/videoupload' className='uploadLink'>
             <div className="upload_logo" >
+                <h1>Upload</h1>
                 <UploadOutlined style={{fontSize:'45px', color:'black' }}/> 
             </div>
             </Link>

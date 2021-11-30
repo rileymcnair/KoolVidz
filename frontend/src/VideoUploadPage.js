@@ -1,7 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import { Typography, Button, Form, message, Input } from 'antd';
 import {UploadOutlined} from '@ant-design/icons';
-import Header from "./Header.js";
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -28,7 +27,6 @@ function UploadVideoPage() {
     return (
         <div className="App App-header">
                 
-            <Header /> 
 
         <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
         

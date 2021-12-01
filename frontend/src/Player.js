@@ -40,10 +40,13 @@ export default class Player extends Component {
       }
     
     handleSubmit = async() => {
-        await fetch(`/api/comment/create?video_id=${this.state.videoId}&content=${this.state.current_comment}`, {method: 'POST'})
-        var new_comments = await (await fetch(`/api/comment/get?video_id=${this.state.videoId}`)).json();
-        this.setState({ comments: new_comments })
-        this.setState({ current_comment: ''})
+        if (this.state.current_comment !== '')
+        {
+            await fetch(`/api/comment/create?video_id=${this.state.videoId}&content=${this.state.current_comment}`, {method: 'POST'})
+            var new_comments = await (await fetch(`/api/comment/get?video_id=${this.state.videoId}`)).json();
+            this.setState({ comments: new_comments })
+            this.setState({ current_comment: ''})
+        }
     }
 
     handleLikes = async (type) => {
@@ -102,7 +105,7 @@ export default class Player extends Component {
                         <div className="titleViewCount">
                             <h1 className="titleText">{ this.state.videoData.title }</h1>
                             <p className="viewText">
-                                {this.state.videoData.views} views
+                            { this.state.videoData.views !== "1" ? (<p>{this.state.videoData.views} views</p>) : (<p>{this.state.videoData.views} view</p>) }
                             </p>
                         </div>
                         <div className="ratings">
@@ -127,7 +130,7 @@ export default class Player extends Component {
                 </div>
                 <div className="feedback">
                     <h3 className="commentHeader">
-                        {this.state.comments.length} Comments
+                        { this.state.comments.length !== 1 ? (<p>{this.state.comments.length} Comments</p>) : (<p>{this.state.comments.length} Comment</p>) }
                     </h3>
                     <input type="text" className="commentInput" value={this.state.current_comment} onChange={this.handleChange} placeholder="Write a Comment" />
                     <div className="submitButtonDiv">
@@ -135,11 +138,11 @@ export default class Player extends Component {
                             COMMENT
                         </button>
                     </div>
-                    <p className="commentDirection">Oldest</p>
+                    { this.state.comments.length > 1 ? (<p className="commentDirection">Oldest</p>) : <></>}
                     <div className="comments">
                         {this.state.comments.map(comment => <Comment className="comment" message={comment.content}></Comment>)}
                     </div>
-                    <p className="commentDirection">Most Recent</p>
+                    { this.state.comments.length > 1 ? (<p className="commentDirection">Most Recent</p>) : <></>}
                 </div>
             </div>
         )

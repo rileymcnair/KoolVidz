@@ -156,12 +156,13 @@
 }
 
 .viewText {
-  margin: 5px;
+  margin: 0px;
   color: grey;
 }
 
 .titleText {
   margin: 0;
+  margin-bottom: 10px;
 }
 
 .titleViewCount {
@@ -184,6 +185,7 @@
 
 .commentHeader {
   margin: 0;
+  margin-left: 20px;
 }
 
 .submitButtonDiv{

@@ -8,12 +8,12 @@ function Header() {
 
     function searchBoxListener(event){
         if(event.key==='Enter') {
-            console.log('pressed enter in searchbox')
+            console.log('pressed enter in searchbox');
             search();
         }
     }
     function searchIconListener() {
-        console.log("clicked search icon")
+        console.log("clicked search icon");
         search();
     }
 

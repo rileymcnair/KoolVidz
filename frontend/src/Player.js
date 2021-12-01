@@ -13,7 +13,7 @@ export default class Player extends Component {
             ratings: 0,
             likeStatus: null,
             comments: [],
-            value: ''
+            current_comment: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,14 +36,14 @@ export default class Player extends Component {
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});
+        this.setState({current_comment: event.target.value});
       }
     
     handleSubmit = async() => {
-        await fetch(`/api/comment/create?video_id=${this.state.videoId}&content=${this.state.value}`, {method: 'POST'})
+        await fetch(`/api/comment/create?video_id=${this.state.videoId}&content=${this.state.current_comment}`, {method: 'POST'})
         var new_comments = await (await fetch(`/api/comment/get?video_id=${this.state.videoId}`)).json();
         this.setState({ comments: new_comments })
-        this.setState({ value: ''})
+        this.setState({ current_comment: ''})
     }
 
     handleLikes = async (type) => {
@@ -121,20 +121,25 @@ export default class Player extends Component {
                             </div>
                         </div>
                     </div>
+                    <p className="description">
+                        {this.state.videoData.description}
+                    </p>
                 </div>
                 <div className="feedback">
                     <h3 className="commentHeader">
                         {this.state.comments.length} Comments
                     </h3>
-                    <input type="text" className="commentInput" value={this.state.value} onChange={this.handleChange} placeholder="Write a Comment" />
+                    <input type="text" className="commentInput" value={this.state.current_comment} onChange={this.handleChange} placeholder="Write a Comment" />
                     <div className="submitButtonDiv">
                         <button className="submitButton" onClick={this.handleSubmit}>
                             COMMENT
                         </button>
                     </div>
+                    <p className="commentDirection">Oldest</p>
                     <div className="comments">
                         {this.state.comments.map(comment => <Comment className="comment" message={comment.content}></Comment>)}
                     </div>
+                    <p className="commentDirection">Most Recent</p>
                 </div>
             </div>
         )

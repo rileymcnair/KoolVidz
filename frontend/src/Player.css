@@ -23,7 +23,7 @@
     text-decoration: none;
     font-size: 16px;
     border-radius: 10px;
-    border: 3px solid white;
+    border: 3px solid green;
     margin: 10px;
   }
 
@@ -52,7 +52,7 @@
     text-decoration: none;
     font-size: 16px;
     border-radius: 10px;
-    border: 3px solid white;
+    border: 3px solid red;
     margin: 10px;
   }
 
@@ -66,7 +66,7 @@
   text-decoration: none;
   font-size: 16px;
   border-radius: 10px;
-  border: 3px solid white;
+  border: 3px solid green;
   margin: 10px;
   }
 
@@ -95,7 +95,7 @@
   text-decoration: none;
   font-size: 16px;
   border-radius: 10px;
-  border: 3px solid white;
+  border: 3px solid red;
   margin: 10px;
   }
 
@@ -157,6 +157,7 @@
 
 .viewText {
   margin: 5px;
+  color: grey;
 }
 
 .titleText {
@@ -206,7 +207,7 @@
   float: right;
   font-size: 20px;
   border-radius: 10px;
-  background-color: turquoise;
+  background-color: yellow;
 }
 
 .commentInput {
@@ -218,9 +219,14 @@
   margin-bottom: 0;
 }
 
-input[type=text] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
+.description {
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+
+.commentDirection {
+  margin: 0;
+  font-size: 15px;
+  margin-left: 1%;
+  color: grey;
 }

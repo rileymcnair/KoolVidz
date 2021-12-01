@@ -24,8 +24,7 @@ It features a search bar, like/dislike system, and a view counter.
   
  - Unique Feature #1: View Counter
  
-   - The website tracks and displays the number of times a video has been viewed, allowing
-     users to determine the popularity of a video.
+   - The website tracks and displays the number of times a video has been viewed, allowing users to determine the popularity of a video.
      
  - Unique Feature #2: Video Rating System (Like/Dislike)
  

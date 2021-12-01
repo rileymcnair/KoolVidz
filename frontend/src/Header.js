@@ -7,14 +7,9 @@ import {VideoCameraOutlined, SearchOutlined, UploadOutlined} from '@ant-design/i
 function Header() {
 
     function searchBoxListener(event){
-        if(event.key==='Enter') {
-            console.log('pressed enter in searchbox');
+        if (event.key==='Enter') {
             search();
         }
-    }
-    function searchIconListener() {
-        console.log("clicked search icon");
-        search();
     }
 
     function search() {
@@ -38,7 +33,7 @@ function Header() {
             
             <div className="header_search">
                 <input type="text" id="search_box" placeholder="Search videos" onKeyPress={searchBoxListener} ></input> 
-                <SearchOutlined className='searchIcon' onClick={searchIconListener} style={{fontSize:'45px' }}/>
+                <SearchOutlined className='searchIcon' onClick={search} style={{fontSize:'45px' }}/>
             </div> 
 
             <Link to='/videoupload' className='uploadLink'>

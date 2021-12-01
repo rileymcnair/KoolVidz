@@ -16,10 +16,11 @@ function Header() {
     }
     function searchIconListener() {
         console.log("clicked search icon")
+        search();
     }
 
     function search() {
-        /* do search stuff here */
+        
     }
 
     return (

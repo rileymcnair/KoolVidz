@@ -26,8 +26,8 @@ router.post('/video/create', upload.single('video'), async (req, res) => {
 
   const { filename } = req.file
 
-  const id = await DAL.create_video(title, description, filename)
-  res.status(200).json(id)
+  await DAL.create_video(title, description, filename)
+  res.redirect("/")
 })
 
 router.get('/video/get', async (req, res) => {

@@ -17,7 +17,7 @@ function App() {
     <Router>
       <Header /> 
       <Switch> 
-      <Route path="/:query" component={Home} /*More pages should be added*/>
+      <Route path="/search/:query" component={Home} /*More pages should be added*/>
       </Route> 
       <Route path="/player/:id" component={Player}>
       </Route>

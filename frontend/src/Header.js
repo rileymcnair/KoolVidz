@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 
 import {VideoCameraOutlined, SearchOutlined, UploadOutlined} from '@ant-design/icons';
 
-
-
 function Header() {
 
     function searchBoxListener(event){
@@ -20,14 +18,8 @@ function Header() {
     }
 
     function search() {
-
-
-
-
-
-
-        
-
+        let input = document.getElementById('search_box').value
+        window.location.replace('/search/' + input);
     }
 
     return (

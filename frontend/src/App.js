@@ -5,7 +5,7 @@ import UploadVideoPage from './VideoUploadPage'
 import {
   Route,
   BrowserRouter as Router,
-  Switch,
+  Switch
 } from "react-router-dom";
 import Home from './Home';
 import Player from './Player';
@@ -17,7 +17,9 @@ function App() {
     <Router>
       <Header /> 
       <Switch> 
-      <Route path="/search/:query" component={Home} /*More pages should be added*/>
+      <Route exact path="/" component={Home}>
+      </Route> 
+      <Route path="/search/:query?" component={Home}>
       </Route> 
       <Route path="/player/:id" component={Player}>
       </Route>

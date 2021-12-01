@@ -12,9 +12,9 @@ export default class Home extends Component {
         };
     }
 
-    async loadVideos() {
+    async componentDidMount() {
         try {
-            const response = await fetch('/api/video/search?search_str=' + this.state.search_str); //Link to the database: Videos directory
+            const response = await fetch('/api/video/search?search_str=' + (this.state.search_str || "")); //Link to the database: Videos directory
             const data = await response.json();
             this.setState({ videos: data });
         } catch (error) {

@@ -3,42 +3,39 @@ UCLA CS 35L Project
 
 Team Members: Riley McNair, Evan Chen, Leon Zhang, Maxwell Liu, Orrin Zhong
 
-Our team plans to implement a video sharing service to provide information and entertainment to users. 
-This includes a search bar, like/dislike system, and a view counter.
+KoolVidz is a video sharing service that provides information and entertainment to users. 
+It features a search bar, like/dislike system, and a view counter.
 
 ## Features
 
- - Display Dynamic Data to the User
+ - Display dynamic data to the user
 
-   - The website will display video titles, videos, and comments based on user
-selection.
+   - The website displays videos, the video's metadata, and the video's comments based on the user's selection.
 
- - Upload data from Client to Back-end
+ - Upload data from client to Back-end
 
-   - Users will be able to upload videos and associated information which will be stored on the server.
+   - Users are able to upload videos with metadata that is stored on the server.
   
  - Meaningfully search through server-side data
 
-   - Users will be able to search for video titles using a search bar.
+   - Users are able to search for video titles using the search bar at the top of the page
   
-   - Searches will sort by most relevant first.
+   - Search results are sorted by relevance
   
  - Unique Feature #1: View Counter
  
-   - The number of times a video has been viewed will be displayed, allowing
+   - The website tracks and displays the number of times a video has been viewed, allowing
      users to determine the popularity of a video.
      
  - Unique Feature #2: Video Rating System (Like/Dislike)
  
-   - Users will be able to like and dislike videos.
+   - Users are able to like and dislike videos.
    
-   - A composite rating calculated by # likes - # dislikes will be displayed on videos.
+   - The website displays a composite rating for videos calculated by # of likes - # of dislikes.
    
- - Unique Feature #3: Comments Section
+ - Unique Feature #3: Comments
  
-   - Users will submit comments which will be stored on the server database.
-   
-   - Comments will be associated with and displayed under a video.
+   - Users are able to submit comments, which are displayed below the video they belong to.
   
 ## Setup
 

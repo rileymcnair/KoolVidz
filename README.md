@@ -32,7 +32,7 @@ selection.
 
   ○ Users will be able to like and dislike videos.
   
-  ○ Like count and like to dislike ratio will be displayed on videos.
+  ○ A composite rating calculated by # likes - # dislikes will be displayed on videos.
   
 ● Unique Feature #3: Comments Section
 

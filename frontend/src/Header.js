@@ -22,9 +22,14 @@ function Header() {
         window.location.replace('/search/' + input);
     }
 
+    function replaceInput() {
+        let input = document.getElementById('search_box');
+        input.value ="";
+    }
+
     return (
         <div className="header">
-            <Link to='/search' className='homeLink'>
+            <Link to='/search' className='homeLink' onClick={replaceInput}>
             <div className="header_logo" >
                 <VideoCameraOutlined className='videocamIcon' style={{fontSize:'45px' }}/> 
                 <h1>KoolVidz</h1>

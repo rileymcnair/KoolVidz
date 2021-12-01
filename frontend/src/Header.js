@@ -24,7 +24,7 @@ function Header() {
 
     return (
         <div className="header">
-            <Link to='/' className='homeLink'>
+            <Link to='/search' className='homeLink'>
             <div className="header_logo" >
                 <VideoCameraOutlined className='videocamIcon' style={{fontSize:'45px' }}/> 
                 <h1>KoolVidz</h1>

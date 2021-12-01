@@ -17,19 +17,16 @@ function Header() {
         window.location.replace('/search/' + input);
     }
 
-    function replaceInput() {
-        let input = document.getElementById('search_box');
-        input.value ="";
+    function goHome() {
+        window.location.replace('/search/');
     }
 
     return (
         <div className="header">
-            <Link to='/search' className='homeLink' onClick={replaceInput}>
-            <div className="header_logo" >
+            <div className="header_logo" onClick={goHome}>
                 <VideoCameraOutlined className='videocamIcon' style={{fontSize:'45px' }}/> 
                 <h1>KoolVidz</h1>
             </div>
-            </Link>
             
             <div className="header_search">
                 <input type="text" id="search_box" placeholder="Search videos" onKeyPress={searchBoxListener} ></input> 

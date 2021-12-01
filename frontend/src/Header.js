@@ -20,7 +20,14 @@ function Header() {
     }
 
     function search() {
+
+
+
+
+
+
         
+
     }
 
     return (
@@ -33,8 +40,8 @@ function Header() {
             </Link>
             
             <div className="header_search">
-                <input type="text" placeholder="Search videos" onKeyPress={searchBoxListener} ></input> 
-                <SearchOutlined className='searchIcon'style={{fontSize:'45px' }}/>
+                <input type="text" id="search_box" placeholder="Search videos" onKeyPress={searchBoxListener} ></input> 
+                <SearchOutlined className='searchIcon' onClick={searchIconListener} style={{fontSize:'45px' }}/>
             </div> 
 
             <Link to='/videoupload' className='uploadLink'>

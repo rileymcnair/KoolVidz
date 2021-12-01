@@ -13,6 +13,8 @@
 }
 h1 {
     font-size: 40px;
+    padding-bottom: 20px;
+    color:black;
 }
 
 .header_logo {
@@ -22,6 +24,11 @@ h1 {
     padding-right: 40px;
     cursor:pointer;
 }
+
+.header_logo:hover {
+    color:black;
+}
+
 
 .header_search {
     display: flex;
@@ -33,16 +40,16 @@ h1 {
 
 input {
     width:100%;
-    height:50px;
+    height:60px;
     border-radius: 28px;
     font-size: 24px;
     border: 5px solid black;
     font-weight: 700;
-    padding-left: 10px;
+    /* padding-left: 10px; */
 }
 
 .videocamIcon {
-    /* transform: scale(2.4); */
+    transform-origin: left bottom;
     padding-right: 6px;
 }
 
@@ -64,6 +71,24 @@ input {
 .upload_logo {
     display: flex;
     align-items: center;
+    /* margin-left: 40px;
+    margin-right: 70px;
+    padding-right: 20px;
+    padding-left: 20px;
+    cursor:pointer;
+    text-decoration: none;
+    border-radius: 10px; */
+}
+.upload_logo > h1 {
+    font-size: 30px;
+    padding-right: 8px;
+    padding-top:25px;
+    padding-bottom:0px;
+}
+
+.uploadLink{
+    display: flex;
+    align-items: center;
     margin-left: 40px;
     margin-right: 70px;
     padding-right: 20px;
@@ -72,16 +97,17 @@ input {
     text-decoration: none;
     border-radius: 10px;
 }
-.upload_logo > h1 {
-    font-size: 30px;
-    padding-right: 8px;
-}
 
-.uploadLink{
+.uploadLink:hover > h1{
+
     text-decoration: none;
     color: black;
 }
 
-.upload_logo:hover {
+.uploadLink:hover {
     background-color: lightgray;
+}
+
+.upload_logo:hover h1{
+    color:black;
 }

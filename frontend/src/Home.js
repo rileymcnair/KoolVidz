@@ -7,7 +7,7 @@ export default class Home extends Component {
         super();
         this.state = {videos: []};
     }
-    async componentDidMount() {
+    async loadVideos() {
         try {
             const response = await fetch('/api/video/search?search_str='); //Link to the database: Videos directory
             const data = await response.json();
@@ -22,6 +22,7 @@ export default class Home extends Component {
     
                
                 <div className="videoDisplay">
+                   
                     
                         {this.state.videos.map(video =>
                             <VideoBox 

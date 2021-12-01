@@ -16,18 +16,19 @@
 
 
 .playCircle {
-    flex: 0.2;
-    transform: scale(4.5);
+    /* flex: 0.1; */
+    /* transform: scale(4.5); */
+    font-size: 70px;
     transform-origin: left;
     color: black;
-    padding-left: 5px;
-    padding-right: 100px;
+    padding-left: 10px;
+    padding-right: 20px;
     color: #565dbe;
     
 }
 
 .videoText {
-    flex: 0.8;
+    /* flex: 0.9; */
     color:black;
 }
 

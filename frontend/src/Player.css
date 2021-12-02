@@ -130,9 +130,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 20px;
-    padding-left: 20px;
-    width: 50%
+    margin-top: 20px;
+    /* padding-left: 20px; */
+    width: 60%;
+    margin-left: 22%;
+    background-color: rgb(233, 232, 232);
 }
 
 .videoPlayer {
@@ -199,7 +201,8 @@
   float: right;
   font-size: 20px;
   border-radius: 10px;
-  background-color: greenyellow;
+  /* background-color: greenyellow; */
+  background-color: rgb(233, 232, 232);
 }
 
 .submitButton:hover {
@@ -209,7 +212,8 @@
   float: right;
   font-size: 20px;
   border-radius: 10px;
-  background-color: yellow;
+  /* background-color: yellow; */
+  background-color: #565dbe;
 }
 
 .commentInput {

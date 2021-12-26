@@ -4,7 +4,7 @@ UCLA CS 35L Project
 Team Members: Riley McNair, Evan Chen, Leon Zhang, Maxwell Liu, Orrin Zhong
 
 KoolVidz is a video sharing service that provides information and entertainment to users. 
-It features a search bar, like/dislike system, and a view counter.
+It features video streaming, search bar, like/dislike system, comments, and a view counter.
 
 ## Features
 

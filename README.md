@@ -45,7 +45,7 @@ It features video streaming, search bar, like/dislike system, comments, and a vi
  5. ```cd backend```
  6. ```npm install```
  7. ```npm run start```
- 8. ```GET https://localhost:6000/onboard``` to create the database
+ 8. ```GET https://localhost:5050/api/onboard``` to create the database
  9. Open another terminal
  10. ```cd frontend```
  11. ```npm install```

@@ -1,6 +1,5 @@
 .top {
     padding-top: 20px;
-   
 }
 
 .upload {
@@ -26,6 +25,45 @@ label{
     margin-bottom: 10px;
     border-radius: 10px;
     border: 5px solid blue;
+    resize:both;
+}
+
+.submit {
+    width:50%;
+    margin-left: 10%;
+    cursor:pointer;
+    margin-bottom:50px;
+}
+.submit:hover {
+    background-color: lightblue;
+}.top {
+    padding-top: 20px;
+}
+
+.upload {
+    border-radius: 0px;
+    margin-left:25%;
+    margin-right: 25%
+}
+
+label{
+    font-size: 25px;
+    margin-left: 10px;
+}
+
+.enterTitle {
+    width: 70%;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+.descriptionEnter {
+    width: 70%;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 5px solid blue;
+    resize:both;
 }
 
 .submit {

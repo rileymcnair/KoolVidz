@@ -8,32 +8,29 @@
     overflow: hidden;
     margin-bottom: 50px;
     margin-right: 50px;
+    box-shadow: 4px 4px 6px -2px #565dbe;
 }
 
 .videoBox:hover {
     background-color: rgb(231, 231, 231);
 }
 
-
 .playCircle {
-    /* flex: 0.1; */
-    /* transform: scale(4.5); */
     font-size: 70px;
     transform-origin: left;
     color: black;
     padding-left: 10px;
     padding-right: 20px;
-    color: #565dbe;
-    
+    color: #565dbe;;
 }
 
 .videoText {
-    /* flex: 0.9; */
     color:black;
+    font-size: 18px;
 }
 
 p {
-    font-size:18px;
+    font-size:16px;
 }
 
 .videoBoxLink {

@@ -8,16 +8,38 @@ const SE = require('./search_engine')
 
 const app = express()
 const router = express.Router()
-const upload = multer({ dest: './videos' })
 const cors = require('cors')
+
+const PORT = process.env.PORT || 5050
+
+const upload = multer({
+  storage: multer.diskStorage(
+      {
+          destination: function (req, file, cb) {
+              cb(null, '../frontend/public/videos/');
+          },
+          filename: function (req, file, cb) {
+              cb(
+                  null,
+                  new Date().toISOString() + 
+                  '_' +
+                  file.originalname
+              );
+          }
+      }
+  ), 
+});
 
 function is_valid_video_id (video_id) {
   return /^\d+$/.test(video_id)
 }
 
 router.post('/video/create', upload.single('video'), async (req, res) => {
-  const { title } = req.query
-  const { description } = req.query
+  const { title } = req.query;
+  const { description } = req.query;
+
+  console.log(req.file)
+  
 
   if (!req.file || !title || !description) {
     res.sendStatus(400)
@@ -25,6 +47,7 @@ router.post('/video/create', upload.single('video'), async (req, res) => {
   }
 
   const { filename } = req.file
+ 
 
   await DAL.create_video(title, description, filename)
   res.redirect("/")
@@ -32,6 +55,7 @@ router.post('/video/create', upload.single('video'), async (req, res) => {
 
 router.get('/video/get', async (req, res) => {
   const { video_id } = req.query
+
 
   if (!is_valid_video_id(video_id)) {
     res.sendStatus(400)
@@ -48,6 +72,8 @@ router.get('/video/get', async (req, res) => {
 
   res.status(200).json(video)
 })
+
+/
 
 router.get('/video/search', async (req, res) => {
   const { search_str } = req.query
@@ -150,8 +176,11 @@ router.get('/comment/get', async (req, res) => {
   res.status(200).json(comments)
 })
 
-router.get('/videos/', (req, res) => {
-  res.sendFile('database-design.txt', { root: __dirname })
+// router.get('/videos/', (req, res) => {
+//   res.sendFile('database-design.txt', { root: __dirname })
+// })
+app.get('/videos/', (req,res)=> {
+  console.log('reached')
 })
 
 router.get('/onboard', async (req, res) => {
@@ -164,14 +193,20 @@ router.get('/onboard', async (req, res) => {
   }
 })
 
+app.get('/pop', (req, res)=> {
+  res.status(200).sendFile(__dirname+'/videoplayback.mp4')
+})
+
 app.use(requestIp.mw())
 
 app.use('/api', router)
 
-app.use('/videos', express.static('videos'))
+
+
+app.use('/videos', express.static('./videos'))
 
 app.use(cors())
 
-app.listen(6000, () => {
-  console.log('App started on port 6000')
+app.listen(PORT, () => {
+  console.log('App started on port ' + PORT)
 })

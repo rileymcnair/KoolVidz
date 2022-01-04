@@ -1,7 +1,3 @@
-import React from 'react';
-import logo from './logo.svg';
-import UploadVideoPage from './VideoUploadPage'
-//import './App.css';
 import {
   Route,
   BrowserRouter as Router,
@@ -9,22 +5,18 @@ import {
 } from "react-router-dom";
 import Home from './Home';
 import Player from './Player';
-import Header from "./Header.js"
+import Header from "./Header.js";
+import UploadVideoPage from './VideoUploadPage';
 
 function App() {
   return (
-    
     <Router>
-      <Header /> 
+      <Header/> 
       <Switch> 
-      <Route exact path="/" component={Home}>
-      </Route> 
-      <Route path="/search/:query?" component={Home}>
-      </Route> 
-      <Route path="/player/:id" component={Player}>
-      </Route>
-      <Route path="/videoupload" component={UploadVideoPage}>
-      </Route>
+        <Route exact path="/" component={Home}></Route> 
+        <Route path="/search/:query?" component={Home}></Route> 
+        <Route path="/player/:id" component={Player}></Route>
+        <Route path="/videoupload" component={UploadVideoPage}></Route>
       </Switch>
     </Router>
   );

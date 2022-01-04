@@ -24,19 +24,19 @@ function Header() {
     return (
         <div className="header">
             <div className="header_logo" onClick={goHome}>
-                <VideoCameraOutlined className='videocamIcon' style={{fontSize:'45px' }}/> 
+                <VideoCameraOutlined className='videocamIcon'/>
                 <h1>KoolVidz</h1>
             </div>
             
             <div className="header_search">
                 <input type="text" id="search_box" placeholder="Search videos" onKeyPress={searchBoxListener} ></input> 
-                <SearchOutlined className='searchIcon' onClick={search} style={{fontSize:'45px' }}/>
+                <SearchOutlined className='searchIcon'/>
             </div> 
 
             <Link to='/videoupload' className='uploadLink'>
             <div className="upload_logo" >
                 <h1>Upload</h1>
-                <UploadOutlined style={{fontSize:'45px', color:'black' }}/> 
+                <UploadOutlined className='uploadIcon'/>
             </div>
             </Link>
         </div>

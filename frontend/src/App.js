@@ -26,7 +26,7 @@ function App() {
   return (
   <Router>
       <Switch> 
-        <Route exact path="/first" component={First}></Route> 
+        <Route exact path="/" component={First}></Route> 
         <Route exact path="/second" component={Second}></Route> 
         
       </Switch>

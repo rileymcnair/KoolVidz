@@ -1,16 +1,22 @@
 const { Client } = require('pg')
 const pgtools = require('pgtools')
+require("dotenv").config();
 
-const DATABASE_USER = 'postgres'
-const DATABASE_HOST = 'localhost'
-const DATABASE_NAME = 'koolvidz'
-const DATABASE_PORT = 5432
-const CONFIG = {
-  user: DATABASE_USER,
-  password: 'SwitchCS21', // Do not commit!
-  port: DATABASE_PORT,
-  host: DATABASE_HOST 
-}
+
+
+// const CONFIG = {
+//   user: DB_USER,
+//   password: 'SwitchCS21', 
+//   port: DB_PORT,
+//   host: DB_HOST 
+// }
+
+
+
+const devConfig = `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
+
+const proConfig = process.env.DATABASE_URL; //heroku addons
+
 
 class DB {
   async create () {
@@ -41,9 +47,13 @@ class DB {
   }
 
   async connect () {
+    // this.client = new Client({
+    //   ...CONFIG,
+    //   database: DATABASE_NAME,
+    // })
     this.client = new Client({
-      ...CONFIG,
-      database: DATABASE_NAME,
+      connectionString:
+    process.env.NODE_ENV === "production" ? proConfig : devConfig,
     })
 
     await this.client.connect()

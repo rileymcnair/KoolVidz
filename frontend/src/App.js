@@ -11,22 +11,29 @@ import React from "react"
 
 function App() {
   
+  const [data, setData] = React.useState()
+
   React.useEffect( async() => {
-    await fetch("/example")
-    .then((res)=> console.log(res))
-    .catch(e=>console.log(e))
-  }
-  )
+      let result = await fetch("/example")
+      console.log(result)
+      result = await result.json()
+      setData(result.test)
+      
+  }, [])
   return (
-    <Router>
-      <Header/> 
-      <Switch> 
-        <Route exact path="/" component={Home}></Route> 
-        <Route path="/search/:query?" component={Home}></Route> 
-        <Route path="/player/:id" component={Player}></Route>
-        <Route path="/videoupload" component={UploadVideoPage}></Route>
-      </Switch>
-    </Router>
+    <div>
+      <h1>hello world</h1>
+      <h1>{data}</h1>
+    </div>
+    // <Router>
+    //   <Header/> 
+    //   <Switch> 
+    //     <Route exact path="/" component={Home}></Route> 
+    //     <Route path="/search/:query?" component={Home}></Route> 
+    //     <Route path="/player/:id" component={Player}></Route>
+    //     <Route path="/videoupload" component={UploadVideoPage}></Route>
+    //   </Switch>
+    // </Router>
   );
 }
 

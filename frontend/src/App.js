@@ -4,12 +4,11 @@ import {
   BrowserRouter as Router,
   Switch
 } from "react-router-dom";
-// import Home from './Home';
-// import Player from './Player';
-// import Header from "./Header.js";
-// import UploadVideoPage from './VideoUploadPage';
-import First from "./First.js"
-import Second from "./Second.js"
+import Home from './Home';
+import Player from './Player';
+import Header from "./Header.js";
+import UploadVideoPage from './VideoUploadPage';
+
 
 
 function App() {
@@ -24,22 +23,15 @@ function App() {
       
   }, [])
   return (
-  <Router>
+    <Router>
+      <Header/> 
       <Switch> 
-        <Route exact path="/" component={First}></Route> 
-        <Route exact path="/second" component={Second}></Route> 
-        
+        <Route exact path="/" component={Home}></Route> 
+        <Route path="/search/:query?" component={Home}></Route> 
+        <Route path="/player/:id" component={Player}></Route>
+        <Route path="/videoupload" component={UploadVideoPage}></Route>
       </Switch>
     </Router>
-    // <Router>
-    //   <Header/> 
-    //   <Switch> 
-    //     <Route exact path="/" component={Home}></Route> 
-    //     <Route path="/search/:query?" component={Home}></Route> 
-    //     <Route path="/player/:id" component={Player}></Route>
-    //     <Route path="/videoupload" component={UploadVideoPage}></Route>
-    //   </Switch>
-    // </Router>
   );
 }
 

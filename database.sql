@@ -1,0 +1,3 @@
+create table videos (id serial not null primary key, title text not null, description text not null, views bigint not null default 0, filename text not null),
+create table ratings (id serial not null primary key, video_id int not null references videos(id), is_like boolean not null, ip_address text not null),
+create table comments (id serial not null primary key, video_id int not null references videos(id), content text not null)

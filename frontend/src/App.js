@@ -18,16 +18,15 @@ function App() {
   }
   )
   return (
-    <h1>hello world nice to meet you</h1>
-    // <Router>
-    //   <Header/> 
-    //   <Switch> 
-    //     <Route exact path="/" component={Home}></Route> 
-    //     <Route path="/search/:query?" component={Home}></Route> 
-    //     <Route path="/player/:id" component={Player}></Route>
-    //     <Route path="/videoupload" component={UploadVideoPage}></Route>
-    //   </Switch>
-    // </Router>
+    <Router>
+      <Header/> 
+      <Switch> 
+        <Route exact path="/" component={Home}></Route> 
+        <Route path="/search/:query?" component={Home}></Route> 
+        <Route path="/player/:id" component={Player}></Route>
+        <Route path="/videoupload" component={UploadVideoPage}></Route>
+      </Switch>
+    </Router>
   );
 }
 

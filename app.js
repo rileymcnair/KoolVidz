@@ -40,7 +40,7 @@ function is_valid_video_id (video_id) {
 
 
 app.get("/example", (req, res)=> {
-  res.send("message from back end: success")
+  res.status(202).send("message from back end: success")
 })
 
 router.post('/video/create', upload.single('video'), async (req, res) => {

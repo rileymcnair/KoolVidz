@@ -7,10 +7,14 @@ import Home from './Home';
 import Player from './Player';
 import Header from "./Header.js";
 import UploadVideoPage from './VideoUploadPage';
+import React from "react"
 
 function App() {
-  useEffect( () => {
-    fetch("/example")
+  
+  React.useEffect( async() => {
+    await fetch("/example")
+    .then((res)=> console.log(res))
+    .catch(e=>console.log(e))
   }
   )
   return (

@@ -12,11 +12,15 @@ const cors = require('cors')
 
 const PORT = process.env.PORT || 5050
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("frontend/build"))
+}
+
 const upload = multer({
   storage: multer.diskStorage(
       {
           destination: function (req, file, cb) {
-              cb(null, '../frontend/public/videos/');
+              cb(null, './frontend/public/videos/');
           },
           filename: function (req, file, cb) {
               cb(
@@ -33,6 +37,11 @@ const upload = multer({
 function is_valid_video_id (video_id) {
   return /^\d+$/.test(video_id)
 }
+
+
+app.get("/example", (req, res)=> {
+  res.send("message from back end: success")
+})
 
 router.post('/video/create', upload.single('video'), async (req, res) => {
   const { title } = req.query;
@@ -179,7 +188,7 @@ router.get('/comment/get', async (req, res) => {
 // router.get('/videos/', (req, res) => {
 //   res.sendFile('database-design.txt', { root: __dirname })
 // })
-app.get('/videos/', (req,res)=> {
+app.get('/videos', (req,res)=> {
   console.log('reached')
 })
 
@@ -203,7 +212,7 @@ app.use('/api', router)
 
 
 
-app.use('/videos', express.static('./videos'))
+// app.use('/videos', express.static('./videos'))
 
 app.use(cors())
 

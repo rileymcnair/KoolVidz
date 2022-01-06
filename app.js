@@ -40,10 +40,14 @@ function is_valid_video_id (video_id) {
 
 
 app.get("/example", (req, res)=> {
+  console.log('reached example')
+  return
   res.status(202).send("message from back end: success")
 })
 
 router.post('/video/create', upload.single('video'), async (req, res) => {
+  console.log('reached video/create')
+  return
   const { title } = req.query;
   const { description } = req.query;
 
@@ -63,6 +67,8 @@ router.post('/video/create', upload.single('video'), async (req, res) => {
 })
 
 router.get('/video/get', async (req, res) => {
+  console.log('reached video/get')
+  return
   const { video_id } = req.query
 
 
@@ -85,6 +91,8 @@ router.get('/video/get', async (req, res) => {
 /
 
 router.get('/video/search', async (req, res) => {
+  console.log('reached search')
+  return
   const { search_str } = req.query
   const results = await SE.search(search_str || '')
 
@@ -92,6 +100,8 @@ router.get('/video/search', async (req, res) => {
 })
 
 router.post('/rating/create', async (req, res) => {
+  console.log('reached create rating')
+  return
   const { video_id } = req.query
   const is_like = req.query.is_like == 'true'
   const ip_address = req.clientIp
@@ -113,6 +123,8 @@ router.post('/rating/create', async (req, res) => {
 })
 
 router.get('/rating/get', async (req, res) => {
+  console.log('reached/get')
+  return
   const { video_id } = req.query
 
   if (!is_valid_video_id(video_id)) {
@@ -126,6 +138,8 @@ router.get('/rating/get', async (req, res) => {
 })
 
 router.get('/rating/has', async (req, res) => {
+  console.log('reached rating/has')
+  return
   const { video_id } = req.query
   const ip_address = req.clientIp
 
@@ -140,6 +154,8 @@ router.get('/rating/has', async (req, res) => {
 })
 
 router.delete('/rating/delete', async (req, res) => {
+  console.log('reached rating/delete')
+  return
   const { video_id } = req.query
   const ip_address = req.clientIp
 
@@ -154,6 +170,8 @@ router.delete('/rating/delete', async (req, res) => {
 })
 
 router.post('/comment/create', async (req, res) => {
+  console.log('reached comment/create')
+  return
   const { video_id } = req.query
   const { content } = req.query
 
@@ -173,6 +191,8 @@ router.post('/comment/create', async (req, res) => {
 })
 
 router.get('/comment/get', async (req, res) => {
+  console.log('reached comment/get')
+  return
   const { video_id } = req.query
 
   if (!is_valid_video_id(video_id)) {
@@ -193,6 +213,8 @@ app.get('/videos', (req,res)=> {
 })
 
 router.get('/onboard', async (req, res) => {
+  console.log('reached onboard')
+  return
   const db = new DB()
   try {
     await db.create()

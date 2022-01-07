@@ -13,12 +13,14 @@ const cors = require('cors')
 const PORT = process.env.PORT || 5050
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "frontend/build")))
+  app.use(express.static(path.join(__dirname, "frontend", "build")))
 
   app.get('*', (request, response) => {
-    response.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
+    response.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
   });
+  
 }
+
 
 
 

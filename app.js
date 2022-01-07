@@ -209,9 +209,9 @@ router.get('/comment/get', async (req, res) => {
 // router.get('/videos/', (req, res) => {
 //   res.sendFile('database-design.txt', { root: __dirname })
 // })
-app.get('/videos', (req,res)=> {
-  console.log('reached /videos')
-})
+// app.get('/videos', (req,res)=> {
+//   console.log('reached /videos')
+// })
 
 router.get('/onboard', async (req, res) => {
  

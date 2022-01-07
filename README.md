@@ -1,6 +1,6 @@
 # KoolVidz
 
-Updates coming soon...
+# Updates coming soon...
 
 UCLA CS 35L Project
 

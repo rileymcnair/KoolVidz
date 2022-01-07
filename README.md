@@ -1,4 +1,7 @@
 # KoolVidz
+
+Updates coming soon...
+
 UCLA CS 35L Project
 
 Team Members: Riley McNair, Evan Chen, Leon Zhang, Maxwell Liu, Orrin Zhong

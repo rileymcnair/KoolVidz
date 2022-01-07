@@ -16,11 +16,14 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("frontend/build"))
 }
 
+const destination = process.env.NODE_ENV === 
+"production" ? "./frontend/build/videos/" : "./frontend/public/videos/"
+
 const upload = multer({
   storage: multer.diskStorage(
       {
           destination: function (req, file, cb) {
-              cb(null, './frontend/public/videos/');
+              cb(null, destination);
           },
           filename: function (req, file, cb) {
               cb(

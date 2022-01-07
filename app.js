@@ -14,11 +14,13 @@ const PORT = process.env.PORT || 5050
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "frontend/build")))
+
+  app.get('*', (request, response) => {
+    response.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
+  });
 }
 
-app.get('*', (request, response) => {
-	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
+
 
 const destination = process.env.NODE_ENV === 
 "production" ? "./frontend/build/videos/" : "./frontend/public/videos/"

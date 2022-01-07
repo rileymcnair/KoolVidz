@@ -10,14 +10,18 @@ const app = express()
 const router = express.Router()
 const cors = require('cors')
 
+ var path = require('path');
+
 const PORT = process.env.PORT || 5050
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "frontend", "build")))
+  
+  app.use(express.static(path.join(__dirname, "frontend", "build")));
 
   app.get('*', (request, response) => {
-    response.sendFile("./frontend/build.index.html");
+    response.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
   });
+ 
   
 }
 
@@ -103,6 +107,7 @@ router.get('/video/get', async (req, res) => {
 
 router.get('/video/search', async (req, res) => {
   console.log('reached /video/search')
+  
 
   const { search_str } = req.query
   const results = await SE.search(search_str || '')

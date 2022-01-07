@@ -1,34 +1,40 @@
 const { Client } = require('pg')
 const pgtools = require('pgtools')
 require("dotenv").config();
+require("dotenv")
+
+const DB_USER = "postgres"
+const DB_HOST = "localhost"
+const DB_NAME = "koolvidz"
+const DB_PORT = 5432
+const DB_PASSWORD = "SwitchCS21"
+
+const CONFIG = {
+  user: DB_USER,
+  password: DB_PASSWORD, 
+  port: DB_PORT,
+  host: DB_HOST 
+}
 
 
 
-// const CONFIG = {
-//   user: DB_USER,
-//   password: 'SwitchCS21', 
-//   port: DB_PORT,
-//   host: DB_HOST 
-// }
-
-
-
-const devConfig = `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
+const devConfig = `postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`;
 
 const proConfig = process.env.DATABASE_URL; //heroku addons
 
 
 class DB {
   async create () {
+    console.log('creating DB')
     // Drop database if exists
     try {
-      const drop_res = await pgtools.dropdb(CONFIG, DATABASE_NAME)
+      const drop_res = await pgtools.dropdb(CONFIG, DB_NAME)
       console.log(drop_res)
     } catch (error) {
       // Do nothing if drop fails
     }
 
-    const create_res = await pgtools.createdb(CONFIG, DATABASE_NAME)
+    const create_res = await pgtools.createdb(CONFIG, DB_NAME)
     console.log(create_res)
 
     await this.connect()
@@ -51,10 +57,19 @@ class DB {
     //   ...CONFIG,
     //   database: DATABASE_NAME,
     // })
-    this.client = new Client({
-      connectionString:
-    process.env.NODE_ENV === "production" ? proConfig : devConfig,
-    })
+    if (process.env.NODE_ENV === "production") {
+      this.client = new Client({
+        connectionString: proConfig,
+        ssl: {
+          rejectUnauthorized: false,
+        }
+      })
+    } 
+    else { /* development environment */
+      this.client = new Client({
+        connectionString: devConfig,
+      })
+    }
 
     await this.client.connect()
   }

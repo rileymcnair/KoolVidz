@@ -2,7 +2,7 @@ const express = require('express')
 const requestIp = require('request-ip')
 const multer = require('multer')
 
-const DB = require('./database')
+const DB = require('./database.js')
 const DAL = require('./data_access_layer')
 const SE = require('./search_engine')
 
@@ -214,6 +214,7 @@ app.get('/videos', (req,res)=> {
 })
 
 router.get('/onboard', async (req, res) => {
+ 
   const db = new DB()
   try {
     await db.create()

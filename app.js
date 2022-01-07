@@ -227,9 +227,6 @@ router.get('/onboard', async (req, res) => {
   }
 })
 
-app.get('/pop', (req, res)=> {
-  res.status(200).sendFile(__dirname+'/videoplayback.mp4')
-})
 
 app.use(requestIp.mw())
 
@@ -244,3 +241,9 @@ app.use(cors())
 app.listen(PORT, () => {
   console.log('App started on port ' + PORT)
 })
+
+
+app.get('/search', ()=>{
+throw 'reached /search somehow'
+}
+)

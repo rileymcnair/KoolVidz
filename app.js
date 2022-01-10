@@ -11,20 +11,9 @@ const router = express.Router()
 const cors = require('cors')
 
  var path = require('path');
+const res = require('express/lib/response')
 
 const PORT = process.env.PORT || 5050
-
-if (process.env.NODE_ENV === "production") {
-  
-  app.use(express.static(path.join(__dirname, "frontend", "build")));
-
-  app.get('*', (request, response) => {
-    response.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
-  });
- 
-  
-}
-
 
 
 
@@ -103,7 +92,7 @@ router.get('/video/get', async (req, res) => {
   res.status(200).json(video)
 })
 
-/
+
 
 router.get('/video/search', async (req, res) => {
   console.log('reached /video/search')
@@ -257,6 +246,17 @@ app.listen(PORT, () => {
 
 
 app.get('/search', ()=>{
-throw 'reached /search somehow'
+  res.status(501)
 }
 )
+
+
+if (process.env.NODE_ENV === "production") {
+  
+  app.use(express.static(path.join(__dirname, "frontend", "build")));
+
+  app.get('*', (request, response) => {
+    response.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
+  });
+ 
+}

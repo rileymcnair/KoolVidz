@@ -249,7 +249,7 @@ app.listen(PORT, () => {
 
 if (process.env.NODE_ENV === "production") {
 
-  app.use('/videos', express.static("./frontend/build/videos"))
+  app.use('/videos', express.static(path.join(__dirname, "frontend", "build","videos")))
   
   app.use(express.static(path.join(__dirname, "frontend", "build")));
 
@@ -258,6 +258,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 else {
-  app.use('/videos', express.static("./frontend/public/videos"))
+  app.use('/videos', express.static(path.join(__dirname, "frontend", "public","videos")))
+
 
 }

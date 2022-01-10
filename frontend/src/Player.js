@@ -41,9 +41,11 @@ export default class Player extends Component {
         this.setState({current_comment: event.target.value});
       }
     
-    handleSubmit = async() => {
-        if (this.state.current_comment !== '')
+    handleSubmit = async(e) => {
+        
+        if ((e.key=== "Enter" || e.type ==="click") && this.state.current_comment !== '')
         {
+            console.log("reached inside")
             await fetch(`/api/comment/create?video_id=${this.state.videoId}&content=${this.state.current_comment}`, {method: 'POST'})
             var new_comments = await (await fetch(`/api/comment/get?video_id=${this.state.videoId}`)).json();
             this.setState({ comments: new_comments })
@@ -135,9 +137,9 @@ export default class Player extends Component {
                     <h3 className="commentHeader">
                         { this.state.comments.length !== 1 ? (<p>{this.state.comments.length} Comments</p>) : (<p>{this.state.comments.length} Comment</p>) }
                     </h3>
-                    <input type="text" className="commentInput" value={this.state.current_comment} onChange={this.handleChange} placeholder="Write a Comment" />
+                    <input type="text" className="commentInput" value={this.state.current_comment} onChange={this.handleChange} placeholder="Write a Comment" onKeyPress={this.handleSubmit}/>
                     <div className="submitButtonDiv">
-                        <button className="submitButton" onClick={this.handleSubmit}>
+                        <button className="submitButton" onClick={this.handleSubmit} >
                             COMMENT
                         </button>
                     </div>

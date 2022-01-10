@@ -245,10 +245,7 @@ app.listen(PORT, () => {
 })
 
 
-app.get('/search', ()=>{
-  res.status(501)
-}
-)
+
 
 
 if (process.env.NODE_ENV === "production") {

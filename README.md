@@ -1,6 +1,6 @@
 # KoolVidz
 
-# TRY IT OUT: https://koolvidz.herokuapp.com/ (this is an open internet project)
+# Try it out: https://koolvidz.herokuapp.com/
 
 UCLA CS 35L Project
 

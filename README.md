@@ -1,6 +1,6 @@
 # KoolVidz
 
-# Updates coming soon...
+# TRY IT OUT: https://koolvidz.herokuapp.com/ (this is an open internet project)
 
 UCLA CS 35L Project
 
@@ -39,17 +39,17 @@ It features video streaming, search bar, like/dislike system, comments, and a vi
  
    - Users are able to submit comments, which are displayed below the video they belong to.
   
-## Setup
+## Development Setup
 
  1. Install PostgreSQL from [here](https://www.postgresql.org/download/). Remember the password used during setup and keep the default port (5432)
  2. Clone or download this repository
- 3. Add the database password to ```backend/database.js``` in CONFIG.password
- 4. Open a terminal
- 5. ```cd backend```
- 6. ```npm install```
- 7. ```npm run start```
- 8. ```GET https://localhost:5050/api/onboard``` to create the database
- 9. Open another terminal
- 10. ```cd frontend```
- 11. ```npm install```
- 12. ```npm run start```
+ 3. Add the database password to ```database.js``` under ```DB_PASSWORD```
+ 4. Open a terminal with working directory: ```KoolVidz```
+ 5. ```npm install```
+ 6. ```npm run start```
+ 6. ```GET https://localhost:5050/api/onboard``` to create the database
+ 7. Open another terminal with working directory: ```KoolVidz```
+ 8. ```cd frontend```
+ 9. ```npm install```
+ 10. ```cd ..```
+ 11. ```npm run dev```

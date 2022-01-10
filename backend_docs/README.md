@@ -6,9 +6,9 @@
  2. Clone or download the repository
  3. `cd backend`
  4. `npm install`
- 5. Add your database password to `database.js`
+ 5. Add your database password to `database.js` under ```DB_PASSWORD```
  6. Start the project with `npm run start`
- 7. `GET /onboard` to create the database
+ 7. `GET http://localhost:5050/api/onboard` to create the database
 
 ## Testing
 

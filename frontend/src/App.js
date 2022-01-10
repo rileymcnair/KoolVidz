@@ -13,15 +13,6 @@ import UploadVideoPage from './VideoUploadPage';
 
 function App() {
   
-  const [data, setData] = React.useState()
-
-  React.useEffect( async() => {
-      let result = await fetch("/example")
-      console.log(result)
-      result = await result.json()
-      setData(result.test)
-      
-  }, [])
   return (
     <Router>
       <Header/> 

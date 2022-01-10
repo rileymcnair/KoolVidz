@@ -7,7 +7,7 @@ const DB_USER = "postgres"
 const DB_HOST = "localhost"
 const DB_NAME = "koolvidz"
 const DB_PORT = 5432
-const DB_PASSWORD = "SwitchCS21"
+const DB_PASSWORD = " " //Do not commit
 
 const CONFIG = {
   user: DB_USER,

@@ -43,13 +43,14 @@ It features video streaming, search bar, like/dislike system, comments, and a vi
 
  1. Install PostgreSQL from [here](https://www.postgresql.org/download/). Remember the password used during setup and keep the default port (5432)
  2. Clone or download this repository
- 3. Add the database password to ```database.js``` under ```DB_PASSWORD```
+ 3. Add the database password to ```database.js``` as ```DB_PASSWORD```
  4. Open a terminal with working directory: ```KoolVidz```
- 5. ```npm install```
- 6. ```npm run start```
- 6. ```GET https://localhost:5050/api/onboard``` to create the database
- 7. Open another terminal with working directory: ```KoolVidz```
- 8. ```cd frontend```
- 9. ```npm install```
- 10. ```cd ..```
- 11. ```npm run dev```
+ 5. ```cd KoolVidz```
+ 6. ```npm install```
+ 7. ```GET https://localhost:5050/api/onboard``` to create the database
+ 8. Open another terminal with working directory: ```KoolVidz```
+ 9. ```cd KoolVidz```
+ 10. ```cd frontend```
+ 11. ```npm install```
+ 12. ```cd ..```
+ 13. ```npm run dev```

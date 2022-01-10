@@ -247,13 +247,17 @@ app.listen(PORT, () => {
 
 
 
-
 if (process.env.NODE_ENV === "production") {
+
+  app.use('/videos', express.static("./frontend/build/videos"))
   
   app.use(express.static(path.join(__dirname, "frontend", "build")));
 
   app.get('*', (request, response) => {
-    response.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
+    response.status(501).sendFile(path.join(__dirname, "frontend", "build", "index.html"));
   });
- 
+}
+else {
+  app.use('/videos', express.static("./frontend/public/videos"))
+
 }

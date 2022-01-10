@@ -19,3 +19,12 @@
 
  - Run `npm run lint` to lint your code. Some issues can be fixed with `npm run fix-lint`
  - Remove your password from `database.js`
+
+## Development
+
+ - Videos will be located under /frontend/public/videos
+
+## Deployment
+
+ - Videos will be located under /frontend/build/videos
+

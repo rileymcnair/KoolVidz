@@ -1,19 +1,20 @@
 require('dotenv').config()
-const S3 = require('aws-sdk/clients/s3')
-require('fs')
-
+require('dotenv')
+const AWS = require('aws-sdk')
+const fs = require('fs')
 
 const accessKey = process.env.S3_ACCESS_KEY;
 const secretKey = process.env.S3_SECRET;
 const region = process.env.S3_REGION;
 const bucketName = process.env.S3_BUCKET_NAME;
 
-const s3 = new S3({
-    region, 
-    accessKey,
-    secretKey
-})
 
+AWS.config.update({region: region});
+
+const s3 = new AWS.S3({
+    accessKeyId: accessKey,
+    secretAccessKey: secretKey
+})
 
 function uploadFile(file) {
 

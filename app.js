@@ -10,18 +10,16 @@ const SE = require('./search_engine')
 const app = express()
 const router = express.Router()
 const cors = require('cors')
-
- var path = require('path');
+const s3 = require("./s3")
+var path = require('path');
 const res = require('express/lib/response')
 
 const PORT = process.env.PORT || 5050
 
-const s3 = require("./s3")
-
-
 
 const destination = process.env.NODE_ENV === 
 "production" ? "./frontend/build/videos/" : "./frontend/public/videos/"
+
 
 const upload = multer({
   storage: multer.diskStorage(
@@ -41,32 +39,37 @@ const upload = multer({
   ), 
 });
 
+
 function is_valid_video_id (video_id) {
   return /^\d+$/.test(video_id)
 }
 
 
+//debugging
 app.get("/example", (req, res)=> {
   res.status(202).send({ "test": "hello world from the backend"})
   return
   })
 
-  app.get('/videos/undefined', (req,res) => {
-    console.log('undefined')
-  }) 
-  //endpoint for video tag source
-  app.get('/videos/:filename', (req,res) => {
-    const filename = req.params.filename;
-    let readStream;
-    if (process.env.NODE_ENV === 'production'){
-      readStream = s3.getFileStream(filename)
-    }
-    else //localhost or dev env
-      readStream = fs.createReadStream(path.join(destination,filename))
-    readStream.pipe(res)
-  }) 
 
- 
+app.get('/videos/undefined', (req,res) => {
+  console.log('undefined')
+}) 
+
+
+  //endpoint for video tag source
+app.get('/videos/:filename', (req,res) => {
+  console.log('reached aws videos/filename')
+  const filename = req.params.filename;
+  let readStream;
+    
+  if (process.env.NODE_ENV === 'production'){
+    readStream = s3.getFileStream(filename)
+  }
+  else //localhost or dev env
+    readStream = fs.createReadStream(path.join(destination,filename))
+  readStream.pipe(res)
+}) 
 
 
 router.post('/video/create', upload.single('video'), async (req, res) => {
@@ -76,28 +79,28 @@ router.post('/video/create', upload.single('video'), async (req, res) => {
 
   console.log(req.file)
 
-  if (process.env.NODE_ENV === "production") {
-    await s3.uploadFile(req.file)
-  }
-  
-
   if (!req.file || !title || !description) {
     res.sendStatus(400)
     return
   }
 
   const { filename } = req.file
- 
+  
+  if (process.env.NODE_ENV==="production"){
+    await s3.uploadFile(req.file)
+      .then((val)=>{console.log(val)}) 
+      .catch((e)=>{console.log(e)})
+  }
+  
   await DAL.create_video(title, description, filename)
   res.redirect("/")
 })
 
+
 router.get('/video/get', async (req, res) => {
   console.log('reached /video/get')
 
-
   const { video_id } = req.query
-
 
   if (!is_valid_video_id(video_id)) {
     res.sendStatus(400)
@@ -116,20 +119,18 @@ router.get('/video/get', async (req, res) => {
 })
 
 
-
 router.get('/video/search', async (req, res) => {
   console.log('reached /video/search')
   
-
   const { search_str } = req.query
   const results = await SE.search(search_str || '')
 
   res.status(200).json(results)
 })
 
+
 router.post('/rating/create', async (req, res) => {
   console.log('reached rating/create')
-
 
   const { video_id } = req.query
   const is_like = req.query.is_like == 'true'
@@ -151,9 +152,9 @@ router.post('/rating/create', async (req, res) => {
   res.sendStatus(200)
 })
 
+
 router.get('/rating/get', async (req, res) => {
   console.log('reached rating/get')
-
 
   const { video_id } = req.query
 
@@ -166,6 +167,7 @@ router.get('/rating/get', async (req, res) => {
 
   res.status(200).json(rating)
 })
+
 
 router.get('/rating/has', async (req, res) => {
   console.log('reached rating/has')
@@ -183,6 +185,7 @@ router.get('/rating/has', async (req, res) => {
   res.status(200).json(rating)
 })
 
+
 router.delete('/rating/delete', async (req, res) => {
   console.log('reached rating/delete')
 
@@ -198,6 +201,7 @@ router.delete('/rating/delete', async (req, res) => {
 
   res.sendStatus(200)
 })
+
 
 router.post('/comment/create', async (req, res) => {
   console.log('reached comment/create')
@@ -219,6 +223,7 @@ router.post('/comment/create', async (req, res) => {
 
   res.sendStatus(200)
 })
+
 
 router.get('/comment/get', async (req, res) => {
   console.log('reached comment/get')
@@ -252,9 +257,8 @@ router.get('/onboard', async (req, res) => {
 
 app.use(requestIp.mw())
 
+
 app.use('/api', router)
-
-
 
 // app.use('/videos', express.static('./videos'))
 

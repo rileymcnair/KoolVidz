@@ -1,6 +1,7 @@
 const express = require('express')
 const requestIp = require('request-ip')
 const multer = require('multer')
+const fs = require('fs')
 
 const DB = require('./database.js')
 const DAL = require('./data_access_layer')
@@ -14,6 +15,8 @@ const cors = require('cors')
 const res = require('express/lib/response')
 
 const PORT = process.env.PORT || 5050
+
+const s3 = require("./s3")
 
 
 
@@ -47,7 +50,24 @@ app.get("/example", (req, res)=> {
   res.status(202).send({ "test": "hello world from the backend"})
   return
   })
-  
+
+  app.get('/videos/undefined', (req,res) => {
+    console.log('undefined')
+  }) 
+  //endpoint for video tag source
+  app.get('/videos/:filename', (req,res) => {
+    const filename = req.params.filename;
+    let readStream;
+    if (process.env.NODE_ENV === 'production'){
+      readStream = s3.getFileStream(filename)
+    }
+    else //localhost or dev env
+      readStream = fs.createReadStream(path.join(destination,filename))
+    readStream.pipe(res)
+  }) 
+
+ 
+
 
 router.post('/video/create', upload.single('video'), async (req, res) => {
   console.log('reached create')
@@ -55,6 +75,10 @@ router.post('/video/create', upload.single('video'), async (req, res) => {
   const { description } = req.query;
 
   console.log(req.file)
+
+  if (process.env.NODE_ENV === "production") {
+    await s3.uploadFile(req.file)
+  }
   
 
   if (!req.file || !title || !description) {
@@ -64,7 +88,6 @@ router.post('/video/create', upload.single('video'), async (req, res) => {
 
   const { filename } = req.file
  
-
   await DAL.create_video(title, description, filename)
   res.redirect("/")
 })
@@ -242,20 +265,18 @@ app.listen(PORT, () => {
 })
 
 
+// if (process.env.NODE_ENV === "production") {
 
-
-if (process.env.NODE_ENV === "production") {
-
-  app.use('/videos', express.static(path.join(__dirname, "frontend", "build","videos")))
+//   app.use('/videos', express.static(path.join(__dirname, "frontend", "build","videos")))
   
-  app.use(express.static(path.join(__dirname, "frontend", "build")));
+//   app.use(express.static(path.join(__dirname, "frontend", "build")));
 
-  app.get('*', (request, response) => {
-    response.status(501).sendFile(path.join(__dirname, "frontend", "build", "index.html"));
-  });
-}
-else {
-  app.use('/videos', express.static(path.join(__dirname, "frontend", "public","videos")))
+//   app.get('*', (request, response) => {
+//     response.status(501).sendFile(path.join(__dirname, "frontend", "build", "index.html"));
+//   });
+// }
+// else {
+//   app.use('/videos', express.static(path.join(__dirname, "frontend", "public","videos")))
+//   app.use(express.static(path.join(__dirname, "frontend", "public")));
 
-
-}
+// }

@@ -1,6 +1,6 @@
-# KoolVidz
+# KoolVidz 
 
-# Try it out: https://koolvidz.herokuapp.com/
+# Try it out on Google Chrome: https://koolvidz.herokuapp.com/
 
 UCLA CS 35L Project
 
